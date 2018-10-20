@@ -3,7 +3,6 @@ package vidopre
 import (
 	"fmt"
 	"log"
-	"reflect"
 	"strings"
 	"time"
 	"unicode/utf8"
@@ -195,7 +194,7 @@ type PostInfo struct {
 func (p *PostInfo) parsePostDate(dateTxt string) {
 	//dateTxt something similar to "venerdì, 15 ottobre 2010"
 	// Month field is in Italian
-	fmt.Println(dateTxt)
+	//fmt.Println(dateTxt)
 
 	arr := strings.Split(dateTxt, ",")
 	dds := arr[len(arr)-1]
@@ -209,7 +208,7 @@ func (p *PostInfo) parsePostDate(dateTxt string) {
 	}
 	mm := ""
 	mese := items[len(items)-2]
-	fmt.Println("mese is ", mese)
+	//fmt.Println("mese is ", mese)
 	switch strings.ToLower(mese) {
 	case "gennaio":
 		mm = "01"
@@ -256,17 +255,17 @@ func (p *PostInfo) parsePostDate(dateTxt string) {
 	}
 	yyyy := items[len(items)-1]
 	yyyy = strings.TrimSuffix(yyyy, "\r\n") // Attenzione al formato windows
-	fmt.Printf("Year is %s type is %T\n", yyyy, yyyy)
-	fmt.Println("Day is ", reflect.TypeOf(day))
-	fmt.Println("Month is ", reflect.TypeOf(mm))
+	//fmt.Printf("Year is %s type is %T\n", yyyy, yyyy)
+	//fmt.Println("Day is ", reflect.TypeOf(day))
+	//fmt.Println("Month is ", reflect.TypeOf(mm))
 	dateFormatted := fmt.Sprintf("%s-%s-%s", yyyy, mm, day)
-	fmt.Printf("Formatted date is %s\n", dateFormatted)
+	//fmt.Printf("Formatted date is %s\n", dateFormatted)
 	const layout = "2006-01-02"
 	t, err := time.Parse(layout, dateFormatted)
 	if err != nil {
 		log.Fatalln("Invalid date: ", err)
 	}
-	fmt.Println(t)
+	//fmt.Println(t)
 
 	p.Year = yyyy
 	p.Month = mm
@@ -284,7 +283,7 @@ func GetSplittedPosts(str string) []*PostInfo {
 		switch item.typ {
 		case itemH2Title:
 			if len(pi.Content) > 0 {
-				fmt.Println("*** Post is ***", pi.DateTxt)
+				log.Println("Post created on ", pi.DateTxt, pi.Day, pi.Month, pi.Year)
 				res = append(res, pi)
 				pi = &PostInfo{}
 			}
@@ -302,6 +301,10 @@ func GetSplittedPosts(str string) []*PostInfo {
 		if l.state == nil {
 			break
 		}
+	}
+	if len(pi.Content) > 0 {
+		log.Println("Post createad on ", pi.DateTxt, pi.Day, pi.Month, pi.Year)
+		res = append(res, pi)
 	}
 	return res
 }
