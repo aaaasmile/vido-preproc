@@ -5,7 +5,6 @@ import (
 	"log"
 	"os"
 	"path/filepath"
-	"time"
 
 	"github.com/spf13/afero"
 )
@@ -44,13 +43,18 @@ func splitSinglePage(dirIn string, fname string, dirOut string) {
 	s := string(bb)
 	posts := GetSplittedPosts(s)
 	log.Printf("%d posts recognized in %s\n", len(posts), fname)
-	fmt.Println(posts[len(posts)-1].Content)
-	t := time.Now()
+	//fmt.Println(posts[len(posts)-1].Content)
+	//t := time.Now()
 	for _, item := range posts {
-		outFname := filepath.Join(dirOut, fmt.Sprintf("%s-%s-%s-%d%d%d-%s.txt",
-			item.Year, item.Month, item.Day, t.Hour(), t.Minute(), t.Second(), item.Title))
+		//outFname := filepath.Join(dirOut, fmt.Sprintf("%s-%s-%s-%d%d%d-%s.txt",
+		//	item.Year, item.Month, item.Day, t.Hour(), t.Minute(), t.Second(), item.Title))
+		outFname := filepath.Join(dirOut, fmt.Sprintf("%s-%s-%s-%s.txt",
+			item.Year, item.Month, item.Day, item.Title))
 
-		log.Println("Out file: ", outFname)
+		if err := afs.WriteFile(outFname, []byte(item.Content), 0777); err != nil {
+			log.Fatalln("Unable to write file ", err)
+		}
+		log.Println("Out file written: ", outFname)
 	}
 	os.Exit(1)
 }

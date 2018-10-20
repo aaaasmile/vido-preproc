@@ -202,6 +202,22 @@ type PostInfo struct {
 	Day     string
 }
 
+func (p *PostInfo) prettifyContent() {
+	p.Content = strings.TrimSuffix(p.Content, "\r\n\r\n\r\n")
+	p.Content = strings.TrimPrefix(p.Content, "\n\r\n")
+	aa := strings.Split(p.Content, "\r\n")
+	ll := strings.TrimPrefix(aa[0], h2Title)
+	title := strings.Replace(ll, " ", "_", -1)
+	title = strings.Replace(title, ":", "_", -1)
+	if len(title) > 10 {
+		title = title[0:10]
+	}
+	title = strings.Trim(title, "\r\n")
+	p.Title = title
+
+	fmt.Println("*** Title ***", p.Title)
+}
+
 func (p *PostInfo) parsePostDate(dateTxt string) {
 	//dateTxt something similar to "venerdì, 15 ottobre 2010"
 	// Month field is in Italian
@@ -294,6 +310,7 @@ func GetSplittedPosts(str string) []*PostInfo {
 		switch item.typ {
 		case itemH2Title:
 			if len(pi.Content) > 0 {
+				pi.prettifyContent()
 				log.Println("Post created on ", pi.DateTxt, pi.Day, pi.Month, pi.Year)
 				res = append(res, pi)
 				pi = &PostInfo{}
@@ -314,6 +331,7 @@ func GetSplittedPosts(str string) []*PostInfo {
 		}
 	}
 	if len(pi.Content) > 0 {
+		pi.prettifyContent()
 		log.Println("Post createad on ", pi.DateTxt, pi.Day, pi.Month, pi.Year)
 		res = append(res, pi)
 	}

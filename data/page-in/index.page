@@ -35,7 +35,6 @@ Ho cambiato anche la musica in sottofondo pesscando una tra le più belle perfor
 
 <a href="{relocatable: /images/invido/tasto_destro.PNG}"><img width="300" src="{relocatable: /images/invido/tasto_destro.PNG}"></a>
 
- 
 h2. Runner tool
 
 p(data). mercoledì, 31 gennaio 2018
@@ -79,8 +78,7 @@ p(data). sabato, 5 marzo 2016
 Non so come mai, ma tra passaggi di siti, nuovi e scomparsi, la storia di Breda Cisoni scritta da Beach è scomparsa.
 Ho rimediato <a href="{relocatable: /bredacisoni/index.html}">ripresentandola</a> su questo sito aggiungendoci qualche foto dal mio archivio.
 
-<a 
-   href="{relocatable: /bredacisoni/index.html}"><img width="250" src="{relocatable: /images/breda/stemmabreda_800.jpg}"></a>
+<a href="{relocatable: /bredacisoni/index.html}"><img width="250" src="{relocatable: /images/breda/stemmabreda_800.jpg}"></a>
 
 h2. Come giocare a "_Mariasa_"
 
@@ -123,6 +121,8 @@ Il mio blog si trova è trasferito su "stesosopra.blogspot.com":http://stesosopr
 
 
 h2. Tornato il Tressette su sf.net
+
+p(data). martedì, 29 novembre 2011
 
 Dopo svariato tempo ho pubblicato su sf.net una nuova versione del "tressette":http://sourceforge.net/projects/tressette/. 
 Si tratta di un bugfixing di qualche imprecisione che era rimasta in sospeso. 
@@ -210,7 +210,6 @@ Chi possiede la versione 0.7.5 può aggiornare il programma alla versione 0.8.0,
 semplicemente collegandosi al server della cuperativa e seguire le istruzioni che compariranno.
 Il programma, una volta attualizzato, ripartirà in modo automatico. Versioni precedenti alla 0.7.5
 richiedono l'update via setup.exe sopra riportato.
-
 
 h2. Tressette
 
