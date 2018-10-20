@@ -3,7 +3,6 @@ package vidopre
 import (
 	"fmt"
 	"log"
-	"os"
 	"path/filepath"
 
 	"github.com/spf13/afero"
@@ -56,5 +55,4 @@ func splitSinglePage(dirIn string, fname string, dirOut string) {
 		}
 		log.Println("Out file written: ", outFname)
 	}
-	os.Exit(1)
 }
