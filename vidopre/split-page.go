@@ -38,6 +38,7 @@ func splitSinglePage(dirIn string, fname string, dirOut string) {
 	}
 	s := string(bb)
 	posts := GetSplittedPosts(s)
-	fmt.Printf("Posts: \n%v\n", posts)
+	log.Printf("%d posts recognized in %s\n", len(posts), fname)
+	fmt.Println(posts[len(posts)-1].Content)
 	os.Exit(1)
 }
