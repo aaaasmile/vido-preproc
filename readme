@@ -1,0 +1,16 @@
+== vido-preproc
+Lo scopo di questa piccola utilità è quello di avevre un preprocess
+per il sito dell'invido che crea le pagine .page da sottomettere poi al
+processo di webgen.
+
+Le pagine attuali vengono elaborate e suddivise in diversi .post files.
+Ogni file di post contiene un singolo posto.
+
+Un nuovo post è un file .post che un pattern ben definito con titolo e data
+e rispecchia la struttura attuale. Il nome del file contiene la data rovesciata 
+per il sort.
+
+Una volta che i singolli post si trovano nel proprio file, essi vengono sottoposti ad
+un merge che che crea il file .page finale. Anche il menu di navigazione viene aggiustato.
+
+Alla fine viene chiamato webgen che crea il sito e aggiornato con rsynch

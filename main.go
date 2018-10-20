@@ -12,7 +12,7 @@ func main() {
 	flag.Parse()
 	switch *cmd {
 	case "splitpages":
-		vidopre.SplitPages("./data/page-in")
+		vidopre.SplitPages("./data/page-in", "./data/post-src")
 		break
 	case "newpost":
 		break
