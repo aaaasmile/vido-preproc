@@ -14,3 +14,9 @@ Una volta che i singolli post si trovano nel proprio file, essi vengono sottopos
 un merge che che crea il file .page finale. Anche il menu di navigazione viene aggiustato.
 
 Alla fine viene chiamato webgen che crea il sito e aggiornato con rsynch
+
+== Aggiungere la repository a Github
+Quando si crea una nuova repository su github viene spiegato come si aggiunge questa 
+già inizializzata repository a github. Comunque i comandi sono due:
+git remote add origin https://github.com/aaaasmile/vido-preproc.git
+git push -u origin master
