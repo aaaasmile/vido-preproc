@@ -13,6 +13,7 @@ type itemType int
 const (
 	h2Title            = "h2."
 	pdata              = "p(data)."
+	indexhtml          = "<a href=\"{relocatable: /index.html}\">[</a> Indice"
 	eof                = -1
 	itemError itemType = iota
 	itemEOF
@@ -105,7 +106,7 @@ func (l *lexer) nextItem() item {
 	panic("not reached")
 }
 
-// Lex States
+// Lex States - Begin
 
 func lexPostContent(l *lexer) stateFn {
 	for {
@@ -115,6 +116,13 @@ func lexPostContent(l *lexer) stateFn {
 				l.emit(itemText)
 			}
 			return lexStart
+		}
+		if strings.HasPrefix(l.input[l.pos:], indexhtml) {
+			//l.pos -= len(indexhtml)
+			if l.pos > l.start {
+				l.emit(itemText)
+			}
+			return nil
 		}
 		if l.next() == eof {
 			break
@@ -181,6 +189,8 @@ func lexCtor(name, input string) *lexer {
 	}
 	return l
 }
+
+// Lex States - End
 
 type PostInfo struct {
 	Content string
