@@ -196,12 +196,11 @@ func GetSplittedPosts(str string) []*PostInfo {
 	l := lexCtor("Text lex", str)
 	for {
 		item := l.nextItem()
-		fmt.Printf("**** EMIT *** type %v, val:%v\n", typeName[item.typ], item.val)
+		//fmt.Printf("**** EMIT *** type %v, val:%v\n", typeName[item.typ], item.val)
 		switch item.typ {
 		case itemH2Title:
 			if len(pi.Content) > 0 {
-				fmt.Println("*** Post is", pi)
-				fmt.Println("Append to res")
+				fmt.Println("*** Post is ***", pi.Content)
 				res = append(res, pi)
 				pi = &PostInfo{}
 			}
