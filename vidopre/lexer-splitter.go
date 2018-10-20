@@ -2,7 +2,10 @@ package vidopre
 
 import (
 	"fmt"
+	"log"
+	"reflect"
 	"strings"
+	"time"
 	"unicode/utf8"
 )
 
@@ -128,16 +131,11 @@ func lexInsideDate(l *lexer) stateFn {
 	for {
 		switch r := l.next(); {
 		case r == eof:
-			return l.errorf("Date in post is invalid")
 		case r == '\n':
 			l.emit(itemDateLine)
 			return lexPostContent
 		}
 	}
-	if l.pos > l.start {
-		l.emit(itemText)
-	}
-	return nil
 }
 
 func lexInsidePost(l *lexer) stateFn {
@@ -188,6 +186,92 @@ func lexCtor(name, input string) *lexer {
 type PostInfo struct {
 	Content string
 	DateTxt string
+	Date    time.Time
+	Year    string
+	Month   string
+	Day     string
+}
+
+func (p *PostInfo) parsePostDate(dateTxt string) {
+	//dateTxt something similar to "venerdì, 15 ottobre 2010"
+	// Month field is in Italian
+	fmt.Println(dateTxt)
+
+	arr := strings.Split(dateTxt, ",")
+	dds := arr[len(arr)-1]
+	dds = strings.Trim(dds, " ")
+	//dds = strings.Replace(dds, "\n", "", -1)
+	items := strings.Split(dds, " ")
+	//fmt.Println(dds)
+	//fmt.Println(items)
+	if len(items) < 3 {
+		log.Fatalln("Invalid date format for parsing (4 items expected)", len(items), items, dateTxt)
+	}
+	mm := ""
+	mese := items[len(items)-2]
+	fmt.Println("mese is ", mese)
+	switch strings.ToLower(mese) {
+	case "gennaio":
+		mm = "01"
+		break
+	case "febbraio":
+		mm = "02"
+		break
+	case "marzo":
+		mm = "03"
+		break
+	case "aprile":
+		mm = "04"
+		break
+	case "maggio":
+		mm = "05"
+		break
+	case "giugno":
+		mm = "06"
+		break
+	case "luglio":
+		mm = "07"
+		break
+	case "agosto":
+		mm = "08"
+		break
+	case "settembre":
+		mm = "09"
+		break
+	case "ottobre":
+		mm = "10"
+		break
+	case "novembre":
+		mm = "11"
+		break
+	case "dicembre":
+		mm = "12"
+		break
+	default:
+		log.Fatal("Month not recognized", mese)
+	}
+	day := items[len(items)-3]
+	if len(day) < 2 {
+		day = "0" + day
+	}
+	yyyy := items[len(items)-1]
+	yyyy = strings.TrimSuffix(yyyy, "\r\n") // Attenzione al formato windows
+	fmt.Printf("Year is %s type is %T\n", yyyy, yyyy)
+	fmt.Println("Day is ", reflect.TypeOf(day))
+	fmt.Println("Month is ", reflect.TypeOf(mm))
+	dateFormatted := fmt.Sprintf("%s-%s-%s", yyyy, mm, day)
+	fmt.Printf("Formatted date is %s\n", dateFormatted)
+	const layout = "2006-01-02"
+	t, err := time.Parse(layout, dateFormatted)
+	if err != nil {
+		log.Fatalln("Invalid date: ", err)
+	}
+	fmt.Println(t)
+
+	p.Year = yyyy
+	p.Month = mm
+	p.Day = day
+	p.Date = t
 }
 
 func GetSplittedPosts(str string) []*PostInfo {
@@ -200,14 +284,16 @@ func GetSplittedPosts(str string) []*PostInfo {
 		switch item.typ {
 		case itemH2Title:
 			if len(pi.Content) > 0 {
-				fmt.Println("*** Post is ***", pi.Content)
+				fmt.Println("*** Post is ***", pi.DateTxt)
 				res = append(res, pi)
 				pi = &PostInfo{}
 			}
 			break
 		case itemDateLine:
 			pi.Content += item.val
-			pi.DateTxt = item.val
+			pi.DateTxt = strings.Replace(item.val, pdata, "", 1)
+			pi.DateTxt = strings.TrimSuffix(pi.DateTxt, "\r\n")
+			pi.parsePostDate(pi.DateTxt)
 			break
 		case itemText:
 			pi.Content += item.val
