@@ -103,6 +103,8 @@ func (l *lexer) nextItem() item {
 	panic("not reached")
 }
 
+// Lex States
+
 func lexPostContent(l *lexer) stateFn {
 	for {
 		if strings.HasPrefix(l.input[l.pos:], h2Title) {
@@ -197,8 +199,9 @@ func GetSplittedPosts(str string) []*PostInfo {
 		fmt.Printf("**** EMIT *** type %v, val:%v\n", typeName[item.typ], item.val)
 		switch item.typ {
 		case itemH2Title:
-			if len(res) > 0 {
-				//fmt.Printf("Post is:\n", *pi)
+			if len(pi.Content) > 0 {
+				fmt.Println("*** Post is", pi)
+				fmt.Println("Append to res")
 				res = append(res, pi)
 				pi = &PostInfo{}
 			}
