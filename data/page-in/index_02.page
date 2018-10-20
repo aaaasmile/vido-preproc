@@ -1,0 +1,172 @@
+---
+title: Home
+in_menu: false
+directory_name: invido
+---
+
+<a href="{relocatable: /index.html}">[ Indice </a> | 01 |
+<a href="{relocatable: /index_03.html}"> 02 </a> |
+<a href="{relocatable: /index_archived.html}"> Archivio ]</a>
+
+h2. Creato un nuovo Blog
+
+p(data). domenica, 5 Settembre 2010
+
+Ho creato un nuovo blog personale alla pagina "stesosopra.blogspot.com/":http://stesosopra.blogspot.com/
+
+
+h2. Cuperativa
+
+p(data). domenica, 7 Marzo 2010
+
+Tra un allenamento e l'altro e uno studio partecipe di altri siti dove si gioca a carte,
+scrivo un po' di codice della nuova versione della cuperativa. Che d'improvviso
+potrebbe essere pubblicata. 
+
+h2. Il Briscolone
+
+p(data). Venerdì, 17 Ottobre 2009
+
+L'autunno non è ancora iniziato che è già inverno. Tempo per una versione
+del  programma Cuperativa che uscirà presto.
+Ci sono alcune migliorie all'interfaccia
+grafica, così come un nuovo gioco: il briscolone. Il briscolone è una variante
+della briscola, si gioca con 5 carte e non ha la briscola. L'idea è venuta dopo
+una partita a briscola con Jason.
+
+h2. Il tombolon
+
+p(data). Venerdì, 28 Agosto 2009
+
+Il tombolon è un gioco simile allo spazzino che si gioca a Rovigo. Il gioco
+è stato segnalato da Domenico Starna il quale ha seguito direttamente i giocatori
+nella città veneta. Ecco uno stralcio di quello che mi ha riportato durante
+i suoi viaggi.
+
+<i>Torniamo a Tombolon, giocato a Rovigo con 40 carte ed a Padova con 52 carte.    
+Ho passato due pomeriggi a Rovigo.
+Sono stato nei due locali dove giocano a carte. Auser (autogestione servizi), centro anziani,
+che non sanno usare il computer, e il Bar Sala Giochi Ramada, ora gestito da cinesi.
+I tre giochi tradizionali con le carte regionali italiane, Briscola Scopa e Tressette,
+a Rovigo diventano Briscola, Tombolon e Tressette col Trionfo.
+Mentre i primi due si giocano a 2 oppure a 4 giocatori, il Tressette col Trionfo,
+cioè con un seme di briscola, a Rovigo si gioca in 4. </i>
+
+Per chi volesse vedere partite dal vivo del Tombolon, non deve fare altro che
+recarsi nei locali sopra citati. Per tutti gli altri basta collegarsi al server
+della cuperativa e crecare un avversario col quale giocare.
+
+
+h2. Cuperativa alla stretta finale 
+
+p(data). Sabato, 09 Maggio 2009
+
+In questo periodo sto ultimando la nuova versione della Cuperativa e i primi test
+sono stati messi in moto. Le novità maggiori saranno il gioco del Tombolon e
+la possibilità di giocare per una classifica. Per quest'ultima funzione ho creato
+il sito "cuperativa.invido.it":http://cuperativa.invido.it. Il nuovo sito permette
+di registrare nuovi utenti e di utilizzare un forum.
+
+
+h2. Quando un amico non c'è più
+
+p(data). Sabato, 25 Aprile 2009
+
+Quanto costa non vedere più una persona, non sentirne più la voce, non poter più
+ricordare i bei momenti passati assieme. Quando un amico se ne va, lo fa senza portarsi
+via nulla, lasciando lo spazio dei ricordi intatto, oppure spacca un mondo che
+appartiene al passato per lasciare posto al nuovo? Ho lasciato un paese per scelta,
+ma non ho scelto di lasciarne i ricordi; ma quanto è difficile trattenerli se il volto,
+la voce, il sorriso non ci sono più.
+
+
+h2. Tombolon: il prossimo gioco della cuperativa
+
+p(data). Martedì, 25 Gennaio 2009
+
+Prosegue allegramente lo sviluppo della cuperativa, con in arrivo un altro
+gioco di nicchia. L'esperto di giochi Domenico Starna mi ha suggerito, che il gioco dello
+spazzino assomiglia un po' al gioco del Tombolon giocato a Rovigo. Mi ha spiegato
+le regole e sto provando ad implementarle. Quindi fans del Tombolon rovigiano state in campana.
+Nel frattempo ho tolto le aggiunte di google friend al sito, che erano fine a se stesse.
+Se qualcuno ne sente la mancanza me lo faccia sapere.
+
+
+h2. Pubblicato il gioco della Scopa - Cuperativa 0.6.1
+
+p(data). Mercoledì, 24 Dicembre 2008
+
+Ho aggiunto, al programma della *Cuperativa*, il gioco della scopa a due giocatori.
+Per un aggiornamento veloce dalla versione precedente, basta collegarsi al server online
+della cuperativa, lì vengono scaricati in modo automatico solo un file da 150 kb. 
+
+Di seguito la lista principale dei cambiamenti nella versione 0.6.1
+
+  * - Aggiunto il gioco della scopa
+  * - Cambiate le animazioni nella briscola
+  * - Cambiato il la grafica della mariazza
+  * - Corretto un errore sulla presa delle carte multiple nello spazzino
+
+A tutti gli appasionati della cuperativa e dell'invido, *auguri di buone feste*.
+
+h2. Il prossimo gioco della Cuperativa
+
+p(data). Domenica, 14 Dicembre 2008
+
+Entro Natale sarà pubblicata una nuova versione del programma Cuperativa.
+Ci sarà il nuovo gioco della scopa a due giocatori (scopetta). 
+Ci saranno anche delle migliorie nel gioco della Mariazza, della Briscola e qualche
+aggiustamento nello Spazzino.
+L'aggiornamento sarà automatico per chi si collegherà al server online della cuperativa.
+
+
+h2. Cuperativa: aggiornamento usando Vista
+
+p(data). Lunedì, 8 Dicembre 2008
+
+Alcuni hanno notato che un aggiornamento automatico del programma
+cuperativa usando il server della cuperativa, non funziona se si usa il sistema
+operativo Windows Vista.
+Questo è dovuto al fatto che Vista è restrittivo nell'esecuzione dei programmi.
+Una possibile soluzione è quella di eseguire il programmma con i diritti di amministratore. 
+Questo è necessario solo nella fase di aggiornamento. 
+Se invece non si vuole cambiare i privilegi al programma, allora non rimane altro che scaricare
+il programma dal link "cuperativa download":download/cuperativa_download.html ed installare 
+l'ultima versione mettendola, per esempio, nella directory c:\cuperativa. 
+Maggiori informazioni nella sezione "faq Cuperativa":faq/index.html
+
+h2. Pubblicato "Lo Spazzino" - Cuperativa 0.6.0
+
+p(data). Venerdì, 20 Novembre 2008
+
+<a href="{relocatable: /images/cuperativa/spazzino_in_gioco_big.png}">
+  <img src="{relocatable: /images/cuperativa/spazzino_in_gioco_small.png}">
+</a>
+
+Finalmente una nuova versione del programma *Cuperativa*: la versione 0.6.0.
+
+
+Questa versione consente di giocare allo spazzino, sia
+contro il cpu che in rete contro avversari remoti. Lo spazzino è una variante
+della scopa. Le regole del gioco si trovano nella "sezione spazzino":progetti/cuperativa/spazzino.html.
+
+*Il server è stato aggiornato*, questo significa che le vecchie versioni di cuperativa
+devono venire attualizzate per giocare in rete. Questo avviene in modo
+automatico quando ci si collega al server online.
+Durante l'aggiornamento online, viene scaricato un pacchetto di 4.4MB, molto
+più piccolo del setup completo.
+
+Questo il dettaglio della versione 0_6_0:
+
+
+  * - Aggiunto lo spazzino
+  * - Aggiunto la modalità gioco privato online
+  * - Migliorato il layout del programma
+  * - Migliorato l'aggiornamento automatico via server
+
+
+
+<a href="{relocatable: /index.html}">[ Indice </a> | 01 |
+<a href="{relocatable: /index_03.html}"> 02 </a> |
+<a href="{relocatable: /index_archived.html}"> Archivio ]</a>
+

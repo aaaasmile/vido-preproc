@@ -1,0 +1,179 @@
+---
+title: Home
+in_menu: false
+directory_name: invido
+---
+
+<a href="{relocatable: /index.html}">[ Indice </a> |
+<a href="{relocatable: /index_02.html}"> 01 </a> | 02 |
+<a href="{relocatable: /index_archived.html}"> Archivio ]</a>
+
+
+h2. Giochi di carte online
+
+p(data). Domenica, 26 Ottobre 2008
+
+I giochi di carte online sono sempre più numerosi, specialmente quelli dove si
+giocano soldi veri. Ce ne sono altri dove invece si può tranquillamente giocare
+per divertirsi. In mezzo a quest'ultima categoria ci metto il software della
+Cuperativa.
+_Che cosa rende però Cuperativa diverso da tutti gli altri_? La differenza sta nel fatto
+che è open source. Non solo si può vedere come funziona il programma, ma a nessuno
+è preclusa la via di implementarsi il proprio gioco. Per esempio, l'ultima versione
+si può anallizzare su "koders,":http://www.koders.co.uk/info.aspx?c=ProjectInfo&pid=XA6PS4T6TU6DVZFNQ5WA838XGD&s=cdef%3agame
+il sito che mette in risalto i sorgenti di progetti open.
+
+h2. Robots nella Cuperativa
+
+p(data). Domenica, 8 Ottobre 2008
+
+<a href="{relocatable: /images/cuperativa/cup_0_5_4_robot_big.png}">
+  <img src="{relocatable: /images/cuperativa/cup_0_5_4_robot_small.png}">
+</a>
+
+Per non lasciare soli chi per la prima volta si accinge a varcare la soglia
+della mitica Cuperativa, ho liberato un robot che consente di provare a giocare
+online, anche in assenza di giocatori reali.
+A me non piace giocare online contro giocatori artificiali, ma essi
+possono aiutare il nuovo l'utente per imparare a giocare. I giocatori automatici
+sono riconoscibili dal nome "robot_XX".
+
+
+h2. Europass
+
+p(data). Martedì, 7 Ottobre 2008
+
+A quando il prossimo gioco? Vediamo, intanto mi sono creato una nuova
+applicazione per scrivere il mio curriculum in modo decente, sulla falsa riga del
+modello europass.
+Niente di stravolgente, ma una buona occasione per creare
+un'applicazione in rails e pdfwriter. Appena la finisco, l'aggiungerò alla ristabilita
+sezione tools.
+
+h2. Server attivo
+
+p(data). Mercoledì, 17 Settembre 2008
+
+Il server per giocare a briscola a briscola e a mariazza è ora attivo
+24 ore su 24, 7 giorni su 7.
+Il gioco dello spazzino sta entrando nella fase conclusiva.
+
+
+h2. Pubblicata nuova versione di Cuperativa (0.5.4)
+
+p(data). Sabato, 07 Giugno 2008
+
+Finalmente ho pubblicato una nuova versione del programma *Cuperativa*.
+Questa è la nuova versione *necessaria per giocare online*.
+Con le versioni precedenti non è più possibile giocare in rete e vanno,
+quindi, aggiornate.
+
+Maggiori informazioni nella pagina delle <a href="{relocatable: /news.html}">
+news</a>.
+
+
+h2. Stato del progetto Cuperativa
+
+p(data). Sabato, 30 Maggio 2008
+
+Attualmente sto lavorando ad una nuova versione del programma, la quale consentirà un
+aggiornamento senza dovere scaricare ogni volta tutto il software. Questo avverrà
+quando ci si collegherà al server per giocare online. Siccome il programma non è
+compilato, ma interpretato, per aggiornare il software basta cambiare pochi files.
+In più, un utente che avesse voglia di cambiare il programma, può farlo direttamente
+usando semplicemente Notepad, o qualsiasi altro editor di testo. Personalizzare
+o aggiungere giochi di carte come la briscola sarà quindi immediato.
+
+Ecco in anteprima una schermata del gioco della briscola aggiornato col layout
+suggerito da Domenico Starna.
+
+<a href="{relocatable: /images/cuperativa/inbriscola_0_5_4_big.png}">
+  <img src="{relocatable: /images/cuperativa/inbriscola_0_5_4_small.png}">
+</a>
+
+
+h2. Invido.it
+
+p(data). Sabato, 10 Maggio 2008
+
+Ho rinnovato il sito di *invido.it* per renderlo più accessibile.
+Le FAQ, la descrizione dei progetti, gli screenshots e i download fanno ora
+tutti parte di questo sito.
+La <a href="{relocatable: /download/index.html}"> sezione download</a>
+contiene tutti i programmi pubblicati. 
+
+
+h2. Cuperativa
+
+p(data). Venerdì, 25 Aprile 2008
+
+Il gioco della *__briscola online__* inserito nella cuperativa sta trovando appassionati.
+Sto aggiornando la versione, per migliorare la grafica e qualche funzione nel
+gioco in rete. Il fatto è che passo molto tempo a giocare a briscola online
+usando la cuperativa. Divertente.
+
+h2. Briscola
+
+p(data). Venerdì, 07 Marzo 2008
+
+Nella Cuperativa, l'ultimo gioco arrivato è la *briscola in due*. Si può scaricare
+con la
+Cuperativa 0.5.0.
+
+
+<img src="{relocatable: /images/cuperativa/in_briscola_050.jpg}">
+
+
+h2. Tressette
+
+p(data). Sabato, 09 Febbraio 2008
+
+Ho notato con piacere che negli ultimi giorni c'è stato un incremento dei download
+del programma del *__tressette__* dal sito
+"http://sourceforge.net/projects/tressette/":http://sourceforge.net/projects/tressette/.
+Non è che attualmente stia lavorando direttamente a questo programma,
+ma mi piacerebbe sapere il motivo di questo improvviso picco.
+Maggiori informazioni su questo gioco si trovano alla 
+<a href="{relocatable: /progetti/tressette_progetto.html}"> sezione progetto tressette </a>.
+<img src="{relocatable: /images/tressette/in_partita_small.jpg}">
+
+In ogni modo sto lavorando a gran ritmo per completare la nuova versione del programma cuperativa, per giocare a mariazza. Una volta completata la mariazza, sarà tempo di rinnovare la briscola aggiungendola al programma cuperativa.
+
+h2.  Come si gioca a Mariazza?
+
+p(data). Giovedì, 15 Novembre 2007
+
+Il gioco è molto semplice e funziona come la briscola.Si usano le stesse carte,
+valgono gli stessi punti e le stesse regole per la presa. Si gioca solo in due.
+La Mariazza si può considerare come una variante della briscola.
+Lo svolgimento preciso si trova nella sezione
+<a href="{relocatable: /progetti/cuperativa/mariazza.html}"> Mariazza </a>
+
+h2. Italian Special Solitaire
+
+p(data). Domenica, 02 Ottobre 2005
+
+Aggiunto il programma Italian Special Solitaire 2.0. La peculiarità di questa
+versione è quella di usare il mazzo del Tarocco Piemontese ridotto a 56 carte.
+Nelle carte sono stati aggiunti i semi francesi e scritte in latino
+
+<img src="{relocatable: /images/solitario/special/in_partita_small.jpg}">
+
+Il programma Italian Special Solitaire 2.0 accetta anche delle opzioni a linea
+di comando, per essere lanciato in full screen, oppure a risoluzione definita
+dall'utente. Le immagini del mazzo sono in formato png e sono state realizzate,
+così come quella dello sfondo, da Domenico Starna.
+
+Le funzioni più importanti del programma sono:
+
+    * Solitario a 56 carte
+    * Gestione del punteggio
+    * Carte e sfondo personalizzabili
+    * Multilingua: italiano, inglese e dialetto bredese della bassa mantovana destra Oglio.
+    * Storia e descrizione del mazzo del Tarocco Piemontese (Domenico Starna).
+
+Il programma utilizza la libreria open source SDL. 
+
+<a href="{relocatable: /index.html}">[ Indice </a> |
+<a href="{relocatable: /index_02.html}"> 01 </a> | 02 |
+<a href="{relocatable: /index_archived.html}"> Archivio ]</a>

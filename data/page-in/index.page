@@ -1,0 +1,233 @@
+---
+title: Home
+in_menu: true
+routed_title: Invido
+directory_name: invido
+sort_info: 0
+---
+
+<a href="{relocatable: /index.html}">[</a> Indice |
+<a href="{relocatable: /index_02.html}"> 01 </a> |
+<a href="{relocatable: /index_03.html}"> 02 </a> |
+<a href="{relocatable: /index_archived.html}"> Archivio ]</a>
+
+h2. Invido.it is back!
+
+p(data). Mercoledì 11 ottobre 2018
+
+Dopo qualche giorno di quarantena, il sito dell'invido.it è tornato online su di un server tutto nuovo.
+La premessa per nuove applicazioni. State aggiornati.
+
+h2. Invido: finalmente la nuova versione 2.0.1!
+
+p(data). domenica, 10 giugno 2018
+
+<a href="{relocatable: /images/invido/Invido_home.PNG}"><img width="300" src="{relocatable: /images/invido/Invido_home.PNG}"></a>
+
+Il programma si può scaricare da questo link: "Invido 2.0.1":https://sourceforge.net/projects/invido/files/Invido_210_setup.exe/download.
+  
+Finalmente la nuova versione del gioco dell'Invido che ora supporta la funzione "Vado Dentro". Basta usare il tasto destro
+sulla carta con la quale si vuole andare dentro. Ora il gioco dell'Invido è completo in tutte le funzionalità ed è ancora più forte.
+Per la nuova versione ho fatto una revisione del "codice sorgente":https://github.com/aaaasmile/invidocpp, aggiornando la libreria SDL alla versione 2.0. 
+Sempre col tasto destro è possibile invitare il computer a chiamare di più, oppure dargli del 'bortolo'. Se poi questo invito viene accettato è tutto da provare.
+Maggiori informazioni sul progetto del gioco dell'Invido si trovano su "Progetto Invido":progetti/invido_progetto.html.
+Ho cambiato anche la musica in sottofondo pesscando una tra le più belle performance registrate della leggenda bredese Wolmer Beltrami.
+
+<a href="{relocatable: /images/invido/tasto_destro.PNG}"><img width="300" src="{relocatable: /images/invido/tasto_destro.PNG}"></a>
+
+ 
+h2. Runner tool
+
+p(data). mercoledì, 31 gennaio 2018
+
+Uno degli strumenti che uso maggiormanete è il "Runner Tool":https://runners-tool.firebaseapp.com/, che è la raccolta 
+di diverse funzioni per il bravo corridore amatore. Inizialmente l'avevo sviluppato come applicazione 
+per il browser Chrome (extension packged), ma Google ha deciso di non supportare più questo tipo di applicazioni. 
+Così l'ho trasformata in un'applicazione Progressive Web Apps (progetto su "PWAPP-runner-tool":https://github.com/aaaasmile/PWAPP-runner-tool). 
+Questo tipo di appllicazione può funzionare anche offline e può essere salvata all'interno dell'elenco App similmente
+alla mia "vecchia extension packaged":https://github.com/aaaasmile/corsa_tool. Buone corse.
+
+<a href="{relocatable: /images/runner-tool/runner-tool.PNG}"><img width="250" src="{relocatable: /images/runner-tool/runner-tool.PNG}"></a>
+
+h2. Tressette 0.7.5
+
+p(data). sabato, 2 settembre 2017
+
+Dopo aver settato una Virtual Machine con il mitico Windows XP, ho ritrovato il feeling per creare una nuova versione del programma 
+"Tressette":http://sourceforge.net/projects/tressette/files/latest/download, che sotto windows 10 non riusciva a salvare 
+le opzioni cambiate dall'utente. È stata anche l'occasione per migliorarne anche la grafica. La prima versione è stata dodici anni fa,
+ma il programma ha sempre funzionato in tutti i nuovi sistemi operativi che sono seguiti. Solo lo sviluppo del programma è diventato via via sempre 
+più difficoltoso, ma ripristinando Windows Xp e Visual Studio 2008 la compilazione dei sorgenti non è stata più un problema.   
+
+h2. Cuperativa 1.2.10
+
+p(data). sabato, 09 gennaio 2016
+
+<div>
+<a 
+  href="{relocatable: /images/cuperativa/Mariazza_1_2_6.JPG}"><img width="250" src="{relocatable: /images/cuperativa/Mariazza_1_2_6.JPG}"></a>
+Ecco puntuale come un orologio la nuova versione della Cuperativa versione 1.2.10.
+Fatta per correggere un errore nel caricamento dei settings e perfettamente funzionante 
+anche sotto il sistema operativo windows 10.
+Scarica qui la "Cuperativa 1.2.10":https://sourceforge.net/projects/cuperativa/files/latest/download?source=directory.
+</div>
+
+h2. Storia di Breda Cisoni
+
+p(data). sabato, 5 marzo 2016
+
+Non so come mai, ma tra passaggi di siti, nuovi e scomparsi, la storia di Breda Cisoni scritta da Beach è scomparsa.
+Ho rimediato <a href="{relocatable: /bredacisoni/index.html}">ripresentandola</a> su questo sito aggiungendoci qualche foto dal mio archivio.
+
+<a 
+   href="{relocatable: /bredacisoni/index.html}"><img width="250" src="{relocatable: /images/breda/stemmabreda_800.jpg}"></a>
+
+h2. Come giocare a "_Mariasa_"
+
+p(data). domenica, 24 gennaio 2016
+
+<div class="iframe-wrapper">
+<iframe width="420" height="315" src="https://www.youtube.com/embed/H7ahL_4IvOI" frameborder="0" allowfullscreen></iframe>
+</div>
+
+Ho iniziato una campagna di divulgazione dei giochi di carte che ho visto, e ancora vedo giocare, al bar di Breda Cisoni.
+Il primo video della serie, mostra come si fa a giocare a _Mariasa_, in italiano Mariazza in altre parti denominato Mariazzo. 
+
+Se anche tu vuoi provare a giocare a _Mariasa_, ci sono due possibilità. La più affascinante è quella di trasferirti a la Breda,
+frequentare regolarmente il bar dopo i pasti, osservare i giocatori e alla fine sperare di essere invitato a svolgere una partita.
+La seconda, più immediata, è quella di scaricarti il software della "Cuperativa":progetti/cuperativa/index.html seguendo quello che
+è mostrato nel video.
+
+
+h2. Aggiornamento
+
+p(data). martedì, 15 dicembre 2015
+
+Dopo una lunga pausa, ho aggiornato questo sito aggiungendo il download del programma 
+<a href="{relocatable: /download/briscola_net_download.html}">Briscola_net</a>.
+Ho anche spostato i sorgenti dei miei progetti su "GitHub":https://github.com/aaaasmile, per cui è probabile, dopo una lunga pausa, che 
+ci siano delle novità riguardante i giochi di carte in un prossimo futuro.
+
+
+h2. Dove è finito Invido.it?
+
+p(data). sabato, 22 novembre 2014
+
+Il contenuto del sito che prima si trovava su invido.it si è 
+trasferito qui. Il server per giocare alla cuperativa non è più attivo e ha chiuso i battenti.
+Ringrazio tutti quelli che hanno contribuito a renderlo attivo tutti questi anni. 
+I software per giocare a carte in modalità singola contro il computer si trovano sempre
+su questo sito alla sezione <a href="{relocatable: /download/index.html}">download</a>. 
+
+Il mio blog si trova è trasferito su "stesosopra.blogspot.com":http://stesosopra.blogspot.com/.
+
+
+h2. Tornato il Tressette su sf.net
+
+Dopo svariato tempo ho pubblicato su sf.net una nuova versione del "tressette":http://sourceforge.net/projects/tressette/. 
+Si tratta di un bugfixing di qualche imprecisione che era rimasta in sospeso. 
+Per l'occasione ho aggiornato le librerie del suono, che ora funzionano con le nuove versioni del sistema operativo windows. 
+I sorgenti del programma si trovano ora in svn e non più in cvs. Li avevo compilati anche sotto Ubuntu, ma non so se funzionano ancora.
+
+
+<img src="{relocatable: /images/tressette/screenshot02_small.jpg}">
+
+h2. Nuova versione dell'Invido: the best(ia))!
+
+p(data). lunedì, 28 novembre 2011
+
+<img src="{relocatable: /images/invido/in_partita_small.jpg}">
+
+Qualche settimana fa, dopo una visita al campo di allenamento del Breda calcio, mi sono fermato
+a bere una birra offerta dall'allenatore. Quello che mi ha colpito di più, di quel bar della campagna casalasca,
+è stato che ad un tavolo quattro imperterriti giocatori si sfidavano a "Invido":progetti/invido_progetto.html. 
+Che bella sorpresa, dovevo andare a Quattrocase per assistere ad uno spettacolo simile.
+Da lì ho preso lo spunto per pubblicare una nuova versione del gioco, che poi da il titolo a questo sito: l' *Invido*. 
+C'erano alcune cose da sistemare nel software datato 2005, come le voci del programma e la forza di gioco.
+Ora il programma è molto più forte
+e, se non si presta attenzione, è anche facile essere "attaccati" come dei manifesti. Ma lascio a voi provare.
+La nuova versione del gioco "the best(ia)" si scarica da qui: "Invido 0.7.0":/download/invido_download.html
+
+
+h2. Nuovo mazzi di carte per il programma Cuperativa
+
+p(data). giovedì, 5 gennaio 2011
+
+Ho aggiunto nuovi mazzi di carte per il gioco cuperativa.
+Essi sono: il bellissimo mazzo di carte del Tarocco Piemontese creato da Domenico Starna,
+le carte bolognesi, le carte genovesi, le carte piemontesi, le carte romagnole, le carte della Sardegna,
+le carte trentine e le carte triestine.
+
+I mazzi si trovano:
+
+* "mazzo tarocco piemontese":http://kickers.fabbricadigitale.it/cuperativa/mazzi/ver001/tarocco_piemontese.zip
+* "mazzo carte bolognesi":http://kickers.fabbricadigitale.it/cuperativa/mazzi/ver001/bologna.zip
+* "mazzo carte genovesi":http://kickers.fabbricadigitale.it/cuperativa/mazzi/ver001/genova.zip
+* "mazzo carte piemontesi":http://kickers.fabbricadigitale.it/cuperativa/mazzi/ver001/piemonte.zip
+* "mazzo carte romagnole":http://kickers.fabbricadigitale.it/cuperativa/mazzi/ver001/romagna.zip
+* "mazzo carte sardegna":http://kickers.fabbricadigitale.it/cuperativa/mazzi/ver001/sardegna.zip
+* "mazzo carte trento":http://kickers.fabbricadigitale.it/cuperativa/mazzi/ver001/trento.zip
+* "mazzo carte trieste":http://kickers.fabbricadigitale.it/cuperativa/mazzi/ver001/trieste.zip.
+
+Per installare un nuovo mazzo basta scompattare lo zip nella sotto directory _res/carte_ dove è installato il programma
+Cuperativa (per esempio C:\cuperativa\ver_0_8_2\app\res\carte).
+Poi fare partire il programma e nelle opzioni delle carte ora comparirà il mazzo dello
+zip che potrà essere selezionato come tutti gli altri.
+
+Esempio carte romagnole:
+
+* Scaricare lo zip romagna.zip
+* Scompattare lo zip in modo che si crei la directory C:\cuperativa\ver_0_8_2\app\res\carte\romagna con all'interno tutte le immagini delle carte
+* Lanciare il programma cuperativa, selezionare il menu opzioni, mazzi di carte, selezionare carte romagnole e premere il pulsante [applica].
+
+A questo punto tutti i giochi di carte saranno eseguiti usando il mazzo delle carte romagnole.
+<br/>
+
+h2. Pubblicata nuova versione della cuperativa: Aloa verde 0.8.2
+
+p(data). lunedì, 08 novembre 2010
+
+La cuperativa ha corretto nuovi errori che alcuni utenti  mi hanno cortesemente segnalato,
+come il mancato salvataggio dei settings.
+Il setup completo si trova su:
+"Cuperativa 0.8.2 Aloa verde":http://kickers.fabbricadigitale.it/cuperativa/update_packages/cuperativa_082_setup.exe
+Collegandosi al server della cuperativa con una versione precedente del programma,
+si può fare un aggiornamento automatico. 
+
+h2. Pubblicata nuova versione della cuperativa col Tressette
+
+p(data). venerdì, 15 ottobre 2010
+
+<a href="{relocatable: /images/cuperativa/tre_080_big.png}">
+  <img src="{relocatable: /images/cuperativa/tre_080_small.png}">
+</a>
+
+Dopo avere terminato la mia prima maratona non poteva mancare una nuova
+versione del programma Cuperativa. Questa volta ho aggiunto il gioco
+del tressette a due giocatori. Tra le altre migliorie al programma, ho aumentato
+la forza del giocatore computer quando gioca a scopa.
+Chi possiede la versione 0.7.5 può aggiornare il programma alla versione 0.8.0,
+semplicemente collegandosi al server della cuperativa e seguire le istruzioni che compariranno.
+Il programma, una volta attualizzato, ripartirà in modo automatico. Versioni precedenti alla 0.7.5
+richiedono l'update via setup.exe sopra riportato.
+
+
+h2. Tressette
+
+p(data). domenica, 26 Settembre 2010
+
+Guardando le statistiche del programma tressette, che ho pubblicato su "sf.net":http://sourceforge.net/projects/tressette/
+qualche tempo fa (tre.exe), mi sono accorto che presto saranno raggiunti i 10000 download.
+Per l'occasione, mi sembra il minimo dover aggiungere il gioco del tressette a due giocatori
+nella suite della cuperativa. Alcuni mi hanno chiesto quando ci sarà una nuova versione
+del programma tre.exe. Questo non accadrà a breve termine, ma mi piacerebbe tornare a rivisitare
+il gioco programmando di nuovo in c++, magari con la possibilità di collegarsi al server
+della cuperativa per il gioco in rete.
+E' nella calma la vera forza della cuperativa.
+
+
+
+<a href="{relocatable: /index.html}">[</a> Indice |
+<a href="{relocatable: /index_02.html}"> 01 </a> |
+<a href="{relocatable: /index_03.html}"> 02 </a> |
+<a href="{relocatable: /index_archived.html}"> Archivio ]</a>
