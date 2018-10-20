@@ -19,6 +19,14 @@ const (
 	itemText
 )
 
+var (
+	typeName = map[itemType]string{
+		itemH2Title:  "itemH2Title",
+		itemDateLine: "itemDateLine",
+		itemText:     "itemText",
+	}
+)
+
 type item struct {
 	typ itemType
 
@@ -186,11 +194,11 @@ func GetSplittedPosts(str string) []*PostInfo {
 	l := lexCtor("Text lex", str)
 	for {
 		item := l.nextItem()
-		fmt.Printf("type %v, val %v\n", item.typ, item.val)
+		fmt.Printf("**** EMIT *** type %v, val:%v\n", typeName[item.typ], item.val)
 		switch item.typ {
 		case itemH2Title:
 			if len(res) > 0 {
-				fmt.Printf("Post is:\n", *pi)
+				//fmt.Printf("Post is:\n", *pi)
 				res = append(res, pi)
 				pi = &PostInfo{}
 			}
