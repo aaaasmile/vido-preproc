@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"time"
 
 	"github.com/spf13/afero"
 )
@@ -18,6 +19,10 @@ func SplitPages(dirIn string, dirOut string) {
 	if err != nil {
 		log.Fatal(err)
 	}
+	dirOutAbs, err := filepath.Abs(dirOut)
+	if err != nil {
+		log.Fatal(err)
+	}
 	log.Printf("Split all pages (*.page) in %s\n", dir)
 
 	items, err := afero.ReadDir(appfs, dirIn)
@@ -26,7 +31,7 @@ func SplitPages(dirIn string, dirOut string) {
 	}
 	for _, item := range items {
 		log.Println("Processing: ", item.Name())
-		splitSinglePage(dirIn, item.Name(), dirOut)
+		splitSinglePage(dirIn, item.Name(), dirOutAbs)
 	}
 }
 
@@ -40,5 +45,12 @@ func splitSinglePage(dirIn string, fname string, dirOut string) {
 	posts := GetSplittedPosts(s)
 	log.Printf("%d posts recognized in %s\n", len(posts), fname)
 	fmt.Println(posts[len(posts)-1].Content)
+	t := time.Now()
+	for _, item := range posts {
+		outFname := filepath.Join(dirOut, fmt.Sprintf("%s-%s-%s-%d%d%d-%s.txt",
+			item.Year, item.Month, item.Day, t.Hour(), t.Minute(), t.Second(), item.Title))
+
+		log.Println("Out file: ", outFname)
+	}
 	os.Exit(1)
 }

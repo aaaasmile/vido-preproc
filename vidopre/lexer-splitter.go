@@ -194,6 +194,7 @@ func lexCtor(name, input string) *lexer {
 
 type PostInfo struct {
 	Content string
+	Title   string
 	DateTxt string
 	Date    time.Time
 	Year    string
