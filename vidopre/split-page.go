@@ -71,6 +71,7 @@ type CtxIndexPage struct {
 type NavPageDetail struct {
 	PageIx     string
 	IsSelected bool
+	IsLast     bool
 }
 
 func (p *CtxIndexPage) setCurrPage(pageNum int) {
@@ -90,7 +91,7 @@ func (p *CtxIndexPage) setCurrPage(pageNum int) {
 	p.NavDet = nil
 	for i := 1; i < p.TotPages; i++ {
 		s := fmt.Sprintf("%02d", i)
-		p.NavDet = append(p.NavDet, NavPageDetail{PageIx: s, IsSelected: (i == pageNum)})
+		p.NavDet = append(p.NavDet, NavPageDetail{PageIx: s, IsSelected: (i == pageNum), IsLast: i == p.TotPages-1})
 	}
 }
 
