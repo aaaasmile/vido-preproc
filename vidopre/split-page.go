@@ -134,7 +134,7 @@ func CreateIndexPostPages(dirIn string, dirOut string, postPerPage int) {
 		reversed = append(reversed, string(src))
 
 		if (i > 0) && ((i+1)%postPerPage) == 0 {
-			writeReversePostInFile(f, reversed)
+			writeReversePostInFile(f, reversed, ctx)
 			curPageNum--
 			f.Close()
 			ctx.CurrPageNum = curPageNum
@@ -142,11 +142,11 @@ func CreateIndexPostPages(dirIn string, dirOut string, postPerPage int) {
 			f = startNewPage(getTemplateByPage(curPageNum), ctx, dirOutAbs)
 		}
 	}
-	writeReversePostInFile(f, reversed)
+	writeReversePostInFile(f, reversed, ctx)
 	f.Close()
 }
 
-func writeReversePostInFile(f afero.File, arr []string) {
+func writeReversePostInFile(f afero.File, arr []string, ctx *CtxIndexPage) {
 	for i := len(arr) - 1; i >= 0; i-- {
 		src := arr[i]
 		if i != len(arr)-1 {
@@ -156,6 +156,10 @@ func writeReversePostInFile(f afero.File, arr []string) {
 			log.Fatal("Error on merge file", err)
 		}
 	}
+	if _, err := f.WriteString("\r\n\r\n"); err != nil {
+		log.Fatal("Error on merge file", err)
+	}
+	appendNav(ctx, f)
 }
 
 func startNewPage(tempContent string, ctx *CtxIndexPage, dirOutAbs string) afero.File {
@@ -173,14 +177,18 @@ func startNewPage(tempContent string, ctx *CtxIndexPage, dirOutAbs string) afero
 		log.Fatal("Template error: ", err)
 	}
 
+	appendNav(ctx, f)
+
+	return f
+}
+
+func appendNav(ctx *CtxIndexPage, f afero.File) {
 	ctx.setCurrPage(ctx.CurrPageNum)
 	var t2 = template.Must(template.New("PageNav").Parse(tempNavInPage))
-	err = t2.Execute(f, ctx) // Nota come l'interfaccia File sia anche io.Writer
+	err := t2.Execute(f, ctx) // Nota come l'interfaccia File sia anche io.Writer
 	if err != nil {
 		log.Fatal("Template error: ", err)
 	}
-
-	return f
 }
 
 func getOutPageFileName(curPageNum int, dirOutAbs string) string {
