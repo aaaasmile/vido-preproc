@@ -3,7 +3,9 @@ package vidopre
 import (
 	"fmt"
 	"log"
+	"os"
 	"path/filepath"
+	"text/template"
 
 	"github.com/spf13/afero"
 )
@@ -54,5 +56,53 @@ func splitSinglePage(dirIn string, fname string, dirOut string) {
 			log.Fatalln("Unable to write file ", err)
 		}
 		log.Println("Out file written: ", outFname)
+	}
+}
+
+type CtxIndexPage struct {
+	TotPages     int
+	PostPerPages int
+	CurrPageNum  int
+}
+
+func CreateIndexPostPages(dirIn string, dirOut string, postPerPage int) {
+	dir, err := filepath.Abs(dirIn)
+	if err != nil {
+		log.Fatal(err)
+	}
+	dirOutAbs, err := filepath.Abs(dirOut)
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.Printf("Create all index pages (*.page) from posts in %s\nOutput is %s\n", dir, dirOutAbs)
+
+	items, err := afero.ReadDir(appfs, dirIn) // sorted by name as default
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	numPages := len(items)/postPerPage + 1
+	curPageNum := numPages - 1
+	log.Printf("Recognized %d posts, pages %d", len(items), numPages)
+	ctx := &CtxIndexPage{
+		TotPages:     numPages,
+		PostPerPages: postPerPage,
+		CurrPageNum:  curPageNum,
+	}
+	startNewPage(tempIndexOtherPages, ctx)
+
+	for i, item := range items {
+		log.Printf("Processing: %s, page ix is %d\n", item.Name(), curPageNum)
+		if (i > 0) && (i%postPerPage) == 0 {
+			curPageNum--
+		}
+	}
+}
+
+func startNewPage(tempContent string, ctx *CtxIndexPage) {
+	var t = template.Must(template.New("Page").Parse(tempContent))
+	err := t.Execute(os.Stdout, ctx)
+	if err != nil {
+		log.Fatal("Template error: ", err)
 	}
 }
