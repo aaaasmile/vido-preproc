@@ -3,7 +3,6 @@ package vidopre
 import (
 	"fmt"
 	"log"
-	"os"
 	"path/filepath"
 	"text/template"
 
@@ -89,20 +88,72 @@ func CreateIndexPostPages(dirIn string, dirOut string, postPerPage int) {
 		PostPerPages: postPerPage,
 		CurrPageNum:  curPageNum,
 	}
-	startNewPage(tempIndexOtherPages, ctx)
+
+	f := startNewPage(getTemplateByPage(curPageNum), ctx, dirOutAbs)
+	reversed := []string{}
 
 	for i, item := range items {
 		log.Printf("Processing: %s, page ix is %d\n", item.Name(), curPageNum)
-		if (i > 0) && (i%postPerPage) == 0 {
+		afs := &afero.Afero{Fs: appfs}
+		sourceFname := filepath.Join(dir, item.Name())
+		src, err := afs.ReadFile(sourceFname)
+		if err != nil {
+			log.Fatal("Error reading file ", err)
+		}
+		reversed = append(reversed, string(src))
+
+		if (i > 0) && ((i+1)%postPerPage) == 0 {
+			writeReversePostInFile(f, reversed)
 			curPageNum--
+			f.Close()
+			ctx.CurrPageNum = curPageNum
+			reversed = nil
+			f = startNewPage(getTemplateByPage(curPageNum), ctx, dirOutAbs)
+		}
+	}
+	writeReversePostInFile(f, reversed)
+	f.Close()
+}
+
+func writeReversePostInFile(f afero.File, arr []string) {
+	for i := len(arr) - 1; i >= 0; i-- {
+		src := arr[i]
+		if i != len(arr)-1 {
+			src = "\r\n\r\n" + arr[i]
+		}
+		if _, err := f.WriteString(src); err != nil {
+			log.Fatal("Error on merge file", err)
 		}
 	}
 }
 
-func startNewPage(tempContent string, ctx *CtxIndexPage) {
+func startNewPage(tempContent string, ctx *CtxIndexPage, dirOutAbs string) afero.File {
+	afs := &afero.Afero{Fs: appfs}
+	pageFileName := getOutPageFileName(ctx.CurrPageNum, dirOutAbs)
+	f, err := afs.Create(pageFileName)
+	if err != nil {
+		log.Fatalln("Error create file", err)
+	}
+	log.Println("Initialize file ", pageFileName)
+
 	var t = template.Must(template.New("Page").Parse(tempContent))
-	err := t.Execute(os.Stdout, ctx)
+	err = t.Execute(f, ctx) // Nota come l'interfaccia File sia anche io.Writer
 	if err != nil {
 		log.Fatal("Template error: ", err)
 	}
+	return f
+}
+
+func getOutPageFileName(curPageNum int, dirOutAbs string) string {
+	if curPageNum == 0 {
+		return filepath.Join(dirOutAbs, "index.page")
+	}
+	return filepath.Join(dirOutAbs, fmt.Sprintf("index_%d.page", curPageNum))
+}
+
+func getTemplateByPage(curPageNum int) string {
+	if curPageNum == 0 {
+		return tempIndex0Page
+	}
+	return tempIndexOtherPages
 }

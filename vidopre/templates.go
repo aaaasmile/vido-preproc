@@ -7,7 +7,7 @@ const (
 	routed_title: Invido
 	directory_name: invido
 	sort_info: 0
-	---
+---
 `
 
 	tempIndexOtherPages = `---
