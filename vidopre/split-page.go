@@ -62,6 +62,36 @@ type CtxIndexPage struct {
 	TotPages     int
 	PostPerPages int
 	CurrPageNum  int
+	ZeroPage     bool
+	FirstPage    bool
+	LastPage     bool
+	NavDet       []NavPageDetail
+}
+
+type NavPageDetail struct {
+	PageIx     string
+	IsSelected bool
+}
+
+func (p *CtxIndexPage) setCurrPage(pageNum int) {
+	p.CurrPageNum = pageNum
+	if pageNum == 0 {
+		p.ZeroPage = true
+		p.FirstPage = false
+	} else if pageNum == 1 {
+		p.ZeroPage = false
+		p.FirstPage = true
+	}
+	if pageNum == (p.TotPages - 1) {
+		p.LastPage = true
+	} else {
+		p.LastPage = false
+	}
+	p.NavDet = nil
+	for i := 1; i < p.TotPages; i++ {
+		s := fmt.Sprintf("%02d", i)
+		p.NavDet = append(p.NavDet, NavPageDetail{PageIx: s, IsSelected: (i == pageNum)})
+	}
 }
 
 func CreateIndexPostPages(dirIn string, dirOut string, postPerPage int) {
@@ -141,6 +171,14 @@ func startNewPage(tempContent string, ctx *CtxIndexPage, dirOutAbs string) afero
 	if err != nil {
 		log.Fatal("Template error: ", err)
 	}
+
+	ctx.setCurrPage(ctx.CurrPageNum)
+	var t2 = template.Must(template.New("PageNav").Parse(tempNavInPage))
+	err = t2.Execute(f, ctx) // Nota come l'interfaccia File sia anche io.Writer
+	if err != nil {
+		log.Fatal("Template error: ", err)
+	}
+
 	return f
 }
 
@@ -148,7 +186,7 @@ func getOutPageFileName(curPageNum int, dirOutAbs string) string {
 	if curPageNum == 0 {
 		return filepath.Join(dirOutAbs, "index.page")
 	}
-	return filepath.Join(dirOutAbs, fmt.Sprintf("index_%d.page", curPageNum))
+	return filepath.Join(dirOutAbs, fmt.Sprintf("index_%02d.page", curPageNum))
 }
 
 func getTemplateByPage(curPageNum int) string {
