@@ -20,3 +20,7 @@ Quando si crea una nuova repository su github viene spiegato come si aggiunge qu
 già inizializzata repository a github. Comunque i comandi sono due:
 git remote add origin https://github.com/aaaasmile/vido-preproc.git
 git push -u origin master
+
+==TODO 
+- il comando newpost
+- potrebbe essere interessante un webeditor del post interno per usare il correttore di google. 
