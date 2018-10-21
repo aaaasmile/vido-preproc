@@ -19,13 +19,7 @@ directory_name: invido
 
 `
 	tempNavInPage = `{{if .ZeroPage}}<a href="{relocatable: /index.html}">[</a> Indice |{{else}}<a href="{relocatable: /index.html}">[ Indice </a>|{{end}}
-{{range .NavDet}}
-{{if .IsSelected}}  {{.PageIx}}  {{if .IsLast}} <a href="{relocatable: /index_{{.PageIx}}.html}"> ]</a> {{else}} | {{end}}
-{{else}}<a href="{relocatable: /index_{{.PageIx}}.html}"> {{.PageIx}} 
-		{{if .IsLast}}]{{end}} 
-		</a>
-		{{if .IsLast}}{{else}}|{{end}}
-{{end}}
-{{end}}
+{{range .NavDet}}{{if .IsSelected}}  {{.PageIx}}  {{if .IsLast}} <a href="{relocatable: /index_{{.PageIx}}.html}"> ]</a> {{else}} | {{end}}{{else}}<a href="{relocatable: /index_{{.PageIx}}.html}"> {{.PageIx}} {{if .IsLast}}]{{end}}</a>{{if .IsLast}}{{else}}|{{end}}{{end}}{{end}}
+
 `
 )
