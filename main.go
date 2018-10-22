@@ -25,6 +25,7 @@ func main() {
 		vidopre.SplitPages(vidopre.Conf.PageSplitterInputDir, vidopre.Conf.PostSourceDir)
 		break
 	case "newpost":
+		vidopre.NewPost(vidopre.Conf.PostSourceDir, "Mytitle", "Sir\nI wold you like to say: ciao")
 		break
 	case "createindex":
 		vidopre.CreateIndexPostPages(vidopre.Conf.PostSourceDir, vidopre.Conf.OutDirPage, vidopre.Conf.PostPerPage)

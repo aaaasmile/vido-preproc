@@ -22,4 +22,10 @@ directory_name: invido
 {{range .NavDet}}{{if .IsSelected}}  {{.PageIx}}  {{if .IsLast}} <a href="{relocatable: /index_{{.PageIx}}.html}"> ]</a> {{else}} | {{end}}{{else}}<a href="{relocatable: /index_{{.PageIx}}.html}"> {{.PageIx}} {{if .IsLast}}]{{end}}</a>{{if .IsLast}}{{else}}|{{end}}{{end}}{{end}}
 
 `
+	tempNewPost = `h2. {{.Title}}
+
+p(data). {{.Date}}
+
+{{.Content}}
+`
 )
