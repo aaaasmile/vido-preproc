@@ -26,6 +26,5 @@ directory_name: invido
 
 p(data). {{.Date}}
 
-{{.Content}}
-`
+{{.Content}}`
 )

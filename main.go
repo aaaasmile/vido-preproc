@@ -11,6 +11,7 @@ func main() {
 	cmd := flag.String("cmd", "", "Comnads: splitpages, newpost, createindex")
 	var configfile = flag.String("config", "config.toml", "Configuration file path")
 	var ver = flag.Bool("version", false, "Prints current version")
+	var title = flag.String("title", "", "Title of the new post")
 	flag.Parse()
 
 	if *ver {
@@ -25,7 +26,7 @@ func main() {
 		vidopre.SplitPages(vidopre.Conf.PageSplitterInputDir, vidopre.Conf.PostSourceDir)
 		break
 	case "newpost":
-		vidopre.NewPost(vidopre.Conf.PostSourceDir, "Mytitle", "Sir\nI wold you like to say: ciao")
+		vidopre.NewPost(vidopre.Conf.PostSourceDir, *title, "lol")
 		break
 	case "createindex":
 		vidopre.CreateIndexPostPages(vidopre.Conf.PostSourceDir, vidopre.Conf.OutDirPage, vidopre.Conf.PostPerPage)
