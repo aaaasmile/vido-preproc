@@ -1,0 +1,6 @@
+
+#directoy di output dove si trovano i files .page
+PostPerPage = 13
+PageSplitterInputDir = "./data/page-in"
+PostSourceDir = "./data/post-src"
+OutDirPage = "D:\\Projects\\GItHub\\InvidositeHtmlgit\\src"
