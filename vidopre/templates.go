@@ -88,7 +88,7 @@ p(data). {{.Date}}
     <input placeholder="TitlePost" name="titlepost" type="text" value='{{printf "%s" .TitlePost}}'>
   </div>
   <div class="field">
-    <label>Limit Type</label>
+    <label>Post</label>
     <textarea rows="25" cols="110" name="contentpost" placeholder="ContentPost">{{printf "%s" .ContentPost}}</textarea>
   </div>
   <div>

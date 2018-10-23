@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"path/filepath"
+	"strings"
 	"text/template"
 	"time"
 
@@ -47,9 +48,15 @@ func NewPost(dirOut string, title string, content string) {
 	if err != nil {
 		log.Fatal(err)
 	}
+
 	afs := &afero.Afero{Fs: appfs}
 	ct := time.Now()
-	postFileName := fmt.Sprintf("%d-%d-%d-_%s.txt", ct.Year(), ct.Month(), ct.Day(), title)
+	postFileName := fmt.Sprintf("%d-%d-%d-_%s", ct.Year(), ct.Month(), ct.Day(), title)
+	if len(postFileName) > 25 {
+		postFileName = postFileName[0:25]
+	}
+	postFileName = strings.Replace(postFileName, " ", "_", -1)
+	postFileName += ".txt"
 	postFileName = filepath.Join(dirOutAbs, postFileName)
 	f, err := afs.Create(postFileName)
 	if err != nil {

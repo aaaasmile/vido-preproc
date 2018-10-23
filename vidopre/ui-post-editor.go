@@ -19,9 +19,17 @@ type ctxPostEdit struct {
 var (
 	selectedTitle   string
 	selectedContent string
+	selectedIsNew   bool
 )
 
+func savePost(w http.ResponseWriter, r *http.Request) {
+	log.Println("Save post - TO DO...")
+
+}
+
 func editPost(w http.ResponseWriter, r *http.Request) {
+	log.Println("HTTP: Edit post with title", selectedTitle)
+
 	t := template.Must(template.New("EditPost").Parse(tempHtmlBase))
 	t = template.Must(t.Parse(tempHtmlIndex))
 	t = template.Must(t.Parse(tempHtmlEditPost))
@@ -31,7 +39,7 @@ func editPost(w http.ResponseWriter, r *http.Request) {
 		ContentPost: selectedContent,
 		TitlePost:   selectedTitle,
 	}
-	fmt.Println(pagectx)
+	//fmt.Println(pagectx)
 
 	err := t.ExecuteTemplate(w, "base", pagectx)
 	if err != nil {
@@ -43,17 +51,16 @@ func startEditor(title string, content string) {
 
 	selectedContent = content
 	selectedTitle = title
+
 	surl := "localhost:4200"
 	http.HandleFunc("/", editPost)
+	http.HandleFunc("/save-post/", savePost)
 	log.Println("Starting http server at ", fmt.Sprintf("http://%s", surl))
 	log.Fatal(http.ListenAndServe(surl, nil))
 }
 
-func EditNewPost() {
-	startEditor("", "")
-}
-
 func EditLastPost(dirIn string) {
+	selectedIsNew = false
 	items, err := afero.ReadDir(appfs, dirIn) // sorted by name as default, order is acending. Oldest first.
 	if err != nil {
 		log.Fatal(err)
@@ -62,7 +69,8 @@ func EditLastPost(dirIn string) {
 		log.Fatalln("Post source directory is empty. Command not available")
 	}
 	dir, _ := filepath.Abs(dirIn)
-	sourceFname := filepath.Join(dir, items[len(items)-1].Name())
+	itemName := items[len(items)-1].Name()
+	sourceFname := filepath.Join(dir, itemName)
 	afs := &afero.Afero{Fs: appfs}
 	src, err := afs.ReadFile(sourceFname)
 	if err != nil {
@@ -70,5 +78,5 @@ func EditLastPost(dirIn string) {
 	}
 	log.Printf("Editing post %s\n", sourceFname)
 
-	startEditor("", string(src))
+	startEditor(itemName, string(src))
 }

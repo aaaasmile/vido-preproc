@@ -22,6 +22,5 @@ git remote add origin https://github.com/aaaasmile/vido-preproc.git
 git push -u origin master
 
 ==TODO 
-- il comando newpost
-- potrebbe essere interessante un webeditor del post interno per usare il correttore di google. 
+- Nella uicmd va implementato il comando save.
 

@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"log"
 
 	"./vidopre"
 )
@@ -31,7 +32,10 @@ func main() {
 		vidopre.SplitPages(vidopre.Conf.PageSplitterInputDir, vidopre.Conf.PostSourceDir)
 		break
 	case "newpost":
-		vidopre.NewPost(vidopre.Conf.PostSourceDir, *title, "lol")
+		if *title == "" {
+			log.Fatalln("New post need always the title. Please specify the --title flag.")
+		}
+		vidopre.NewPost(vidopre.Conf.PostSourceDir, *title, "")
 		break
 	case "createindex":
 		vidopre.CreateIndexPostPages(vidopre.Conf.PostSourceDir, vidopre.Conf.OutDirPage, vidopre.Conf.PostPerPage)
@@ -42,7 +46,11 @@ func main() {
 
 	switch *uicmd {
 	case "new":
-		vidopre.EditNewPost()
+		if *title == "" {
+			log.Fatalln("New post need always the title. Please specify the --title flag.")
+		}
+		vidopre.NewPost(vidopre.Conf.PostSourceDir, *title, "")
+		vidopre.EditLastPost(vidopre.Conf.PostSourceDir)
 		break
 	case "last":
 		vidopre.EditLastPost(vidopre.Conf.PostSourceDir)
