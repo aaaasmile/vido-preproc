@@ -24,3 +24,12 @@ git push -u origin master
 ==TODO 
 - Nella uicmd va implementato il comando save.
 
+== Comandi
+- Crea un nuovo post e lo edita nel browser a http://localhost:4200
+vido-preproc --uicmd new --title "Ripreso a programmare la Cuperativa"
+
+- Crea i files index.page con menu di navigazione nella page:
+vido-preproc --cmd  createindex
+
+Lo step successivo è quello di lanciare webgen per creare html.
+
