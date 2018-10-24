@@ -92,9 +92,14 @@ p(data). {{.Date}}
     <textarea rows="25" cols="110" name="contentpost" placeholder="ContentPost">{{printf "%s" .ContentPost}}</textarea>
   </div>
   <div>
-    <input class="ui blue submit button" type="submit"  value="Save">
+		<input class="ui blue submit button" type="submit"  value="Save">
+		<a class="ui button" href="/create-page/">Create Index  Pages</a>
   </div>
 </form>
-
+<div>
+	<p>
+		{{printf "%s" .LastMessage}}
+	</p>
+</div>
 {{end}}`
 )

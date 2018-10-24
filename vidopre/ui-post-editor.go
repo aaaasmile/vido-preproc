@@ -16,14 +16,24 @@ type ctxPostEdit struct {
 	TitlePost   string
 	ContentPost string
 	Buildnr     string
+	LastMessage string
 }
 
 var (
-	selectedTitle    string
-	selectedContent  string
-	selectedIsNew    bool
-	selectedFileName string
+	selectedTitle       string
+	selectedContent     string
+	selectedIsNew       bool
+	selectedFileName    string
+	lastMessageInEditor string
 )
+
+func createPageIndex(w http.ResponseWriter, r *http.Request) {
+	log.Println("Crea le pagine index asemblando tutti i vari post")
+	CreateIndexPostPages(Conf.PostSourceDir, Conf.OutDirPage, Conf.PostPerPage)
+
+	lastMessageInEditor = fmt.Sprintf("Pagine index create in  %s", Conf.OutDirPage)
+	http.Redirect(w, r, "/", http.StatusFound)
+}
 
 func savePost(w http.ResponseWriter, r *http.Request) {
 	log.Println("Save post in ", selectedFileName)
@@ -38,6 +48,7 @@ func savePost(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Fatal("Unable to save the file:", err)
 	}
+	lastMessageInEditor = fmt.Sprintf("Messaggio salvato su %s", selectedFileName)
 	http.Redirect(w, r, "/", http.StatusFound)
 }
 
@@ -52,6 +63,7 @@ func editPost(w http.ResponseWriter, r *http.Request) {
 		Buildnr:     BuildNr,
 		ContentPost: selectedContent,
 		TitlePost:   selectedTitle,
+		LastMessage: lastMessageInEditor,
 	}
 	//fmt.Println(pagectx)
 
@@ -65,11 +77,13 @@ func startEditor(title string, content string) {
 
 	selectedContent = content
 	selectedTitle = title
+	lastMessageInEditor = ""
 
 	surl := "localhost:4200"
 	urlInbrowser := fmt.Sprintf("http://%s", surl)
 	http.HandleFunc("/", editPost)
 	http.HandleFunc("/save-post/", savePost)
+	http.HandleFunc("/create-page/", createPageIndex)
 	log.Println("Starting http server at ", urlInbrowser)
 	go openBrowser(urlInbrowser)
 	log.Fatal(http.ListenAndServe(surl, nil))

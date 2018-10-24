@@ -3,6 +3,7 @@ package vidopre
 import (
 	"fmt"
 	"log"
+	"os"
 	"path/filepath"
 	"strings"
 	"text/template"
@@ -58,25 +59,29 @@ func NewPost(dirOut string, title string, content string) {
 	postFileName = strings.Replace(postFileName, " ", "_", -1)
 	postFileName += ".txt"
 	postFileName = filepath.Join(dirOutAbs, postFileName)
-	f, err := afs.Create(postFileName)
-	if err != nil {
-		log.Fatalln("Error create file", err)
-	}
-	defer f.Close()
+	if _, err := os.Stat(postFileName); os.IsNotExist(err) {
+		f, err := afs.Create(postFileName)
+		if err != nil {
+			log.Fatalln("Error create file", err)
+		}
+		defer f.Close()
 
-	wd := giorniSett[ct.Weekday()]
-	mm := mesi[ct.Month()]
-	ctx := CtxNewPost{
-		Title:   title,
-		Content: content,
-		Date:    fmt.Sprintf("%s, %d %s %d", wd, ct.Day(), mm, ct.Year()),
-	}
-	var t = template.Must(template.New("Page").Parse(tempNewPost))
-	err = t.Execute(f, ctx)
-	if err != nil {
-		log.Fatal("Template error: ", err)
-	}
+		wd := giorniSett[ct.Weekday()]
+		mm := mesi[ct.Month()]
+		ctx := CtxNewPost{
+			Title:   title,
+			Content: content,
+			Date:    fmt.Sprintf("%s, %d %s %d", wd, ct.Day(), mm, ct.Year()),
+		}
+		var t = template.Must(template.New("Page").Parse(tempNewPost))
+		err = t.Execute(f, ctx)
+		if err != nil {
+			log.Fatal("Template error: ", err)
+		}
 
-	log.Println("Created new post file", postFileName)
+		log.Println("Created new post file", postFileName)
+	} else {
+		log.Printf("Post file %s already exists", postFileName)
+	}
 
 }
