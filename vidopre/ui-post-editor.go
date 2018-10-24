@@ -5,7 +5,9 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"os/exec"
 	"path/filepath"
+	"runtime"
 
 	"github.com/spf13/afero"
 )
@@ -53,10 +55,26 @@ func startEditor(title string, content string) {
 	selectedTitle = title
 
 	surl := "localhost:4200"
+	urlInbrowser := fmt.Sprintf("http://%s", surl)
 	http.HandleFunc("/", editPost)
 	http.HandleFunc("/save-post/", savePost)
-	log.Println("Starting http server at ", fmt.Sprintf("http://%s", surl))
+	log.Println("Starting http server at ", urlInbrowser)
+	go openBrowser(urlInbrowser)
 	log.Fatal(http.ListenAndServe(surl, nil))
+}
+
+func openBrowser(url string) error {
+	var cmd string
+	var args []string
+	if runtime.GOOS == "windows" {
+		cmd = "cmd"
+		args = []string{"/c", "start"}
+	} else {
+		return fmt.Errorf("OS not supported %s", runtime.GOOS)
+	}
+	args = append(args, url)
+	return exec.Command(cmd, args...).Start()
+
 }
 
 func EditLastPost(dirIn string) {
