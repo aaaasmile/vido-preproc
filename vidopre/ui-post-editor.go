@@ -19,14 +19,26 @@ type ctxPostEdit struct {
 }
 
 var (
-	selectedTitle   string
-	selectedContent string
-	selectedIsNew   bool
+	selectedTitle    string
+	selectedContent  string
+	selectedIsNew    bool
+	selectedFileName string
 )
 
 func savePost(w http.ResponseWriter, r *http.Request) {
-	log.Println("Save post - TO DO...")
-
+	log.Println("Save post in ", selectedFileName)
+	selectedContent = r.FormValue("contentpost")
+	afs := &afero.Afero{Fs: appfs}
+	f, err := afs.Create(selectedFileName) // Nota che con open non riesco a scrivere
+	if err != nil {
+		log.Fatalln("Error open file", err)
+	}
+	defer f.Close()
+	_, err = f.WriteString(selectedContent)
+	if err != nil {
+		log.Fatal("Unable to save the file:", err)
+	}
+	http.Redirect(w, r, "/", http.StatusFound)
 }
 
 func editPost(w http.ResponseWriter, r *http.Request) {
@@ -88,13 +100,13 @@ func EditLastPost(dirIn string) {
 	}
 	dir, _ := filepath.Abs(dirIn)
 	itemName := items[len(items)-1].Name()
-	sourceFname := filepath.Join(dir, itemName)
+	selectedFileName = filepath.Join(dir, itemName)
 	afs := &afero.Afero{Fs: appfs}
-	src, err := afs.ReadFile(sourceFname)
+	src, err := afs.ReadFile(selectedFileName)
 	if err != nil {
 		log.Fatal("Error reading file ", err)
 	}
-	log.Printf("Editing post %s\n", sourceFname)
+	log.Printf("Editing post %s\n", selectedFileName)
 
 	startEditor(itemName, string(src))
 }
