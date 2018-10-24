@@ -4,3 +4,4 @@ PostPerPage = 13
 PageSplitterInputDir = "./data/page-in"
 PostSourceDir = "./data/post-src"
 OutDirPage = "D:\\Projects\\GItHub\\InvidositeHtmlgit\\src"
+UiServerUrl = "localhost:4201"

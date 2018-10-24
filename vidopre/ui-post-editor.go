@@ -22,7 +22,6 @@ type ctxPostEdit struct {
 var (
 	selectedTitle       string
 	selectedContent     string
-	selectedIsNew       bool
 	selectedFileName    string
 	lastMessageInEditor string
 )
@@ -79,7 +78,7 @@ func startEditor(title string, content string) {
 	selectedTitle = title
 	lastMessageInEditor = ""
 
-	surl := "localhost:4200"
+	surl := Conf.UiServerUrl
 	urlInbrowser := fmt.Sprintf("http://%s", surl)
 	http.HandleFunc("/", editPost)
 	http.HandleFunc("/save-post/", savePost)
@@ -96,15 +95,16 @@ func openBrowser(url string) error {
 		cmd = "cmd"
 		args = []string{"/c", "start"}
 	} else {
+		log.Fatal("OS not recognized")
 		return fmt.Errorf("OS not supported %s", runtime.GOOS)
 	}
 	args = append(args, url)
+	log.Println("open a browser url ", url)
 	return exec.Command(cmd, args...).Start()
 
 }
 
 func EditLastPost(dirIn string) {
-	selectedIsNew = false
 	items, err := afero.ReadDir(appfs, dirIn) // sorted by name as default, order is acending. Oldest first.
 	if err != nil {
 		log.Fatal(err)

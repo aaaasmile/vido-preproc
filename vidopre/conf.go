@@ -12,10 +12,11 @@ type Config struct {
 	PageSplitterInputDir string
 	PostSourceDir        string
 	OutDirPage           string
+	UiServerUrl          string
 }
 
 const (
-	BuildNr = "0.1.3"
+	BuildNr = "0.1.4"
 )
 
 var Conf = &Config{
