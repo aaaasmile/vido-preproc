@@ -33,3 +33,6 @@ vido-preproc --cmd  createindex
 
 Lo step successivo è quello di lanciare webgen per creare html.
 
+== tags
+git tag -a v0.1.3 -m "first realese"
+git push --tags
