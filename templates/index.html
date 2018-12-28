@@ -1,5 +1,6 @@
 {{define "base"}}
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -15,13 +16,13 @@
 
     <div class="ui attached message">
       <div class="header">
-        Edit Post
+        Editing Post
       </div>
     </div>
     <form class="ui form attached fluid segment" action="/save-post/" method="POST">
       <div class="field">
-        <label>Title</label>
-        <input placeholder="TitlePost" name="titlepost" type="text" size="35" value='{{printf "%s" .TitlePost}}'>
+        <label>File name</label>
+        <input placeholder="TitlePost" disabled="true" name="titlepost" type="text" size="35" value='{{printf "%s" .TitlePost}}'>
       </div>
       <div class="field">
         <label>Post</label>
@@ -31,15 +32,30 @@
         <input class="ui blue submit button" type="submit" value="Save">
         <a class="ui button" href="/create-page-index/">Create Index Pages</a>
         <a class="ui button" href="/exec-webgen/">Start Webgen</a>
+        <a class="ui button" href='{{printf "%s" .WebgenOutIndexFile}}' target="_blank">Navigate to webgen out</a>
       </div>
     </form>
-    <div>
-      <a class="ui button" href='{{printf "%s" .WebgenOutIndexFile}}' target="_blank">Navigate to webgen out</a>
+    <div class="ui message transition">
+      <i class="close icon"></i>
+      <div class="header">
+        Preprocessor
+      </div>
+      <p>{{printf "%s" .LastMessage}}</p>
     </div>
-    <div>
-      <p>
-        {{printf "%s" .LastMessage}}
-      </p>
+
+    <div class="ui vertical segment">
+      <p>Il post si edita con il formato <a href="http://redcloth.org/" target="_blank">RedCloth</a>. I link sono del
+        formato <code>"testo":http://url</code>.
+        Nota che le apici sono <b>SOLO</b> attorno alla prima parola, quella prima dei due punti.</p>
+    </div>
+    <div class="ui vertical segment">
+      <p>Le immagini messe in src/images si referenziano nel post usando il seguente comando:</p>
+      <code>{{print "<a href=\"{relocatable: /images/nuovaimg.PNG}\"><img width=\"300\" src=\"{relocatable: /images/nuovaimg.PNG}\"></a>"}}
+      </code>
+    </div>
+    <div class="ui vertical segment">
+      <p>Una volta salvato il post, bisogna ricreare gli indici con il comando <i>Create Index Pages</i></p>
+      <p>Poi con Webgen si crea il sito completo che va poi sincronizzato con WLC (comando ./sync_site_invido.sh)</p>
     </div>
 
     <div class="ui vertical footer segment">

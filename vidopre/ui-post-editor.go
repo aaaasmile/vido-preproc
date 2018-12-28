@@ -63,10 +63,6 @@ func savePost(w http.ResponseWriter, r *http.Request) {
 func editPost(w http.ResponseWriter, r *http.Request) {
 	log.Println("HTTP: Edit post with title", selectedTitle)
 
-	// t := template.Must(template.New("EditPost").Parse(tempHtmlBase))
-	// t = template.Must(t.Parse(tempHtmlIndex))
-	// t = template.Must(t.Parse(tempHtmlEditPost))
-
 	pagectx := &ctxPostEdit{
 		Buildnr:            BuildNr,
 		ContentPost:        selectedContent,
@@ -78,8 +74,6 @@ func editPost(w http.ResponseWriter, r *http.Request) {
 	templName := "templates/index.html"
 	log.Println("Load the template and reload on request")
 	t := template.Must(template.New("EditPost").ParseFiles(templName))
-
-	//fmt.Println(pagectx)
 
 	err := t.ExecuteTemplate(w, "base", pagectx)
 	if err != nil {
