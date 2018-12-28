@@ -3,7 +3,8 @@
 PostPerPage = 13
 PageSplitterInputDir = "./data/page-in"
 PostSourceDir = "./data/post-src"
-OutDirPage = "D:\\Projects\\GItHub\\InvidositeHtmlgit\\src"
+OutDirPage = "./data/test"
+#OutDirPage = "D:\\Projects\\GItHub\\InvidositeHtmlgit\\src"
 UiServerUrl = "localhost:4201"
 WebGenWebPageDir = "D:\\Projects\\GItHub\\InvidositeHtmlgit"
 WebGenLocation = "D:\\ruby\\ruby_2_3_1\\bin"
