@@ -85,7 +85,7 @@ p(data). {{.Date}}
 <form class="ui form attached fluid segment" action="/save-post/" method="POST">
   <div class="field">
     <label>Title</label>
-    <input placeholder="TitlePost" name="titlepost" type="text" value='{{printf "%s" .TitlePost}}'>
+    <input placeholder="TitlePost" name="titlepost" type="text" size="35" value='{{printf "%s" .TitlePost}}'>
   </div>
   <div class="field">
     <label>Post</label>
@@ -93,9 +93,13 @@ p(data). {{.Date}}
   </div>
   <div>
 		<input class="ui blue submit button" type="submit"  value="Save">
-		<a class="ui button" href="/create-page/">Create Index  Pages</a>
+		<a class="ui button" href="/create-page-index/">Create Index  Pages</a>
+		<a class="ui button" href="/exec-webgen/">Start Webgen</a>
   </div>
 </form>
+<div>
+	<a class="ui button" href="{{printf "%s" .WebgenOutIndexFile}}" target="_blank">Navigate to webgen out</a>
+</div>
 <div>
 	<p>
 		{{printf "%s" .LastMessage}}

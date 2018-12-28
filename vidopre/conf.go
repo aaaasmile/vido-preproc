@@ -13,10 +13,13 @@ type Config struct {
 	PostSourceDir        string
 	OutDirPage           string
 	UiServerUrl          string
+	WebGenWebPageDir     string
+	WebGenLocation       string
+	WebgenOutIndexFile   string
 }
 
 const (
-	BuildNr = "0.1.4"
+	BuildNr = "0.2.20181228-00"
 )
 
 var Conf = &Config{

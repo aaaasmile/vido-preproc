@@ -15,6 +15,14 @@ un merge che che crea il file .page finale. Anche il menu di navigazione viene a
 
 Alla fine viene chiamato webgen che crea il sito e aggiornato con rsynch
 
+== Aggiungere un nuovo post
+Si lancia:
+.\vido-preproc.exe --title "Bel titolo del nuovo post"
+Questo lancia nel browser l'editor con preparato il nuovo post con data e titolo.
+Una volta editato il post, lo si salva nel nuovo file di testo sotto la dir post-src
+- Poi si ricrea le varie pagine di iondex.html usando dal browser "Create Index  Pages"
+- Ora si lancia webgen con il comando nel browser "Start Webgen"
+
 == Aggiungere la repository a Github
 Quando si crea una nuova repository su github viene spiegato come si aggiunge questa 
 già inizializzata repository a github. Comunque i comandi sono due:
@@ -22,7 +30,7 @@ git remote add origin https://github.com/aaaasmile/vido-preproc.git
 git push -u origin master
 
 ==TODO 
-- Nella uicmd va implementato il comando save.
+- Nella uicmd va implementato il comando save. [DONE]
 
 == Comandi
 - Crea un nuovo post e lo edita nel browser a http://localhost:4200

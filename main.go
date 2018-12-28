@@ -13,7 +13,7 @@ const (
 )
 
 func main() {
-	cmd := flag.String("cmd", "", "Comnads: splitpages, newpost, createindex")
+	cmd := flag.String("cmd", "", "Commands: splitpages, newpost, createindex")
 	var configfile = flag.String("config", "config.toml", "Configuration file path")
 	var ver = flag.Bool("version", false, "Prints current version")
 	var title = flag.String("title", "", "Title of the new post")
