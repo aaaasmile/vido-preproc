@@ -9,7 +9,8 @@ import (
 )
 
 const (
-	help_usage = "Vido site pre-processor (before webgen). Please use --usage to see all options."
+	help_usage       = "Vido site pre-processor (before webgen). Please use --usage to see all options."
+	new_title_needed = "New post always needs the title. Please specify it using the --title flag."
 )
 
 func main() {
@@ -18,6 +19,7 @@ func main() {
 	var ver = flag.Bool("version", false, "Prints current version")
 	var title = flag.String("title", "", "Title of the new post")
 	var uicmd = flag.String("uicmd", "new", "Edit post with browser ui. Commands: new, last")
+	var nobrowser = flag.Bool("nobrowser", false, "Do not open the editor into a new browser page (use it if you have it already open)")
 	flag.Parse()
 
 	if *ver {
@@ -33,7 +35,7 @@ func main() {
 		break
 	case "newpost":
 		if *title == "" {
-			log.Fatalln("New post need always the title. Please specify the --title flag.")
+			log.Fatalln(new_title_needed)
 		}
 		vidopre.NewPost(vidopre.Conf.PostSourceDir, *title, "")
 		break
@@ -44,16 +46,17 @@ func main() {
 		fmt.Println(help_usage)
 	}
 
+	openInBrowser := !*nobrowser
 	switch *uicmd {
 	case "new":
 		if *title == "" {
-			log.Fatalln("New post need always the title. Please specify the --title flag.")
+			log.Fatalln(new_title_needed)
 		}
 		vidopre.NewPost(vidopre.Conf.PostSourceDir, *title, "")
-		vidopre.EditLastPost(vidopre.Conf.PostSourceDir)
+		vidopre.EditLastPost(vidopre.Conf.PostSourceDir, openInBrowser)
 		break
 	case "last":
-		vidopre.EditLastPost(vidopre.Conf.PostSourceDir)
+		vidopre.EditLastPost(vidopre.Conf.PostSourceDir, openInBrowser)
 		break
 	default:
 		fmt.Println(help_usage)

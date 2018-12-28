@@ -8,6 +8,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"runtime"
+	"time"
 
 	"github.com/spf13/afero"
 )
@@ -27,19 +28,26 @@ var (
 	lastMessageInEditor string
 )
 
+func buildLastMsg(msg string) {
+	tt := time.Now()
+	lastMessageInEditor = fmt.Sprintf("[%s] %s", tt.Format("2006-01-02 15:04:05"), msg)
+}
+
 func createPageIndex(w http.ResponseWriter, r *http.Request) {
 	log.Println("Crea le pagine index asemblando tutti i vari post")
 	CreateIndexPostPages(Conf.PostSourceDir, Conf.OutDirPage, Conf.PostPerPage)
 
-	lastMessageInEditor = fmt.Sprintf("Pagine index create in  %s", Conf.OutDirPage)
+	buildLastMsg(fmt.Sprintf("Index pages created in  %s", Conf.OutDirPage))
+
 	http.Redirect(w, r, "/", http.StatusFound)
 }
 
 func createSite(w http.ResponseWriter, r *http.Request) {
 	log.Println("Lancia webgen")
-	if err := execWebgen(); err != nil {
-		log.Printf("Error on executing webgen: %v", err)
-	}
+
+	go execWebgen()
+
+	buildLastMsg("Webgen lanciato in una command console.")
 	http.Redirect(w, r, "/", http.StatusFound)
 }
 
@@ -56,7 +64,7 @@ func savePost(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Fatal("Unable to save the file:", err)
 	}
-	lastMessageInEditor = fmt.Sprintf("Messaggio salvato su %s", selectedFileName)
+	buildLastMsg(fmt.Sprintf("Messaggio salvato su %s", selectedFileName))
 	http.Redirect(w, r, "/", http.StatusFound)
 }
 
@@ -81,7 +89,7 @@ func editPost(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func startEditor(title string, content string) {
+func startEditor(title string, content string, openNewPage bool) {
 
 	selectedContent = content
 	selectedTitle = title
@@ -95,7 +103,10 @@ func startEditor(title string, content string) {
 	http.HandleFunc("/exec-webgen/", createSite)
 	http.Handle("/static/", http.StripPrefix("/static", http.FileServer(http.Dir("static"))))
 	log.Println("Starting http server at ", urlInbrowser)
-	go openBrowser(urlInbrowser)
+	if openNewPage {
+		go openBrowser(urlInbrowser)
+	}
+
 	log.Fatal(http.ListenAndServe(surl, nil))
 }
 
@@ -104,7 +115,7 @@ func execWebgen() error {
 	var args []string
 	if runtime.GOOS == "windows" {
 		cmd = "cmd"
-		args = []string{"/c", "start", "-d", Conf.WebGenWebPageDir}
+		args = []string{"/c", "start", fmt.Sprintf("%s\\webgen", Conf.WebGenLocation), "-d", Conf.WebGenWebPageDir}
 	} else {
 		log.Fatal("OS not recognized")
 		return fmt.Errorf("OS not supported %s", runtime.GOOS)
@@ -112,9 +123,10 @@ func execWebgen() error {
 	log.Printf("Exec webgen (source %s) in %s", Conf.WebGenLocation, Conf.WebGenWebPageDir)
 	out, err := exec.Command(cmd, args...).Output()
 	if err != nil {
+		log.Printf("Error on executing webgen: %v", err)
 		return err
 	}
-	log.Printf("Webgen %s\n", out)
+	log.Printf("Webgen executed %s\n", out)
 	return nil
 }
 
@@ -134,7 +146,7 @@ func openBrowser(url string) error {
 
 }
 
-func EditLastPost(dirIn string) {
+func EditLastPost(dirIn string, openNewPage bool) {
 	items, err := afero.ReadDir(appfs, dirIn) // sorted by name as default, order is acending. Oldest first.
 	if err != nil {
 		log.Fatal(err)
@@ -152,5 +164,5 @@ func EditLastPost(dirIn string) {
 	}
 	log.Printf("Editing post %s\n", selectedFileName)
 
-	startEditor(itemName, string(src))
+	startEditor(itemName, string(src), openNewPage)
 }

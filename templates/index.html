@@ -38,13 +38,16 @@
         <a class="ui button" href='{{printf "%s" .WebgenOutIndexFile}}' target="_blank">Navigate to webgen out</a>
       </div>
     </form>
+    {{if .LastMessage}}
     <div class="ui message transition">
       <i class="close icon"></i>
+      
       <div class="header">
         Preprocessor
       </div>
       <p>{{printf "%s" .LastMessage}}</p>
     </div>
+    {{end}}
 
     <div class="ui vertical segment">
       <p>Il post si edita con il formato <a href="http://redcloth.org/" target="_blank">RedCloth</a>. I link sono del

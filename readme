@@ -15,6 +15,10 @@ un merge che che crea il file .page finale. Anche il menu di navigazione viene a
 
 Alla fine viene chiamato webgen che crea il sito e aggiornato con rsynch
 
+== Sviluppo
+Il comando usato durante lo sviluppo è (applicazione già aperta nel browser, altrimenti non mettere il flag --nobrowser)
+go run .\main.go --uicmd last --nobrowser
+
 == Aggiungere un nuovo post
 Si lancia:
 .\vido-preproc.exe --title "Bel titolo del nuovo post"
@@ -30,6 +34,8 @@ git remote add origin https://github.com/aaaasmile/vido-preproc.git
 git push -u origin master
 
 ==TODO 
+- RedCloth redering in browser live (vedi sito RedCloth) e non dopo webgen.
+- Editare altri post usando il titolo del file invece di editare sempre l'ultimo
 - Nella uicmd va implementato il comando save. [DONE]
 
 == Comandi
