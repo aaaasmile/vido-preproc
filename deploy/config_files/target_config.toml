@@ -1,0 +1,10 @@
+# toml on target
+#directoy di output dove si trovano i files .page
+PostPerPage = 13
+PageSplitterInputDir = "./src-test"
+PostSourceDir = "./post-src"
+OutDirPage = "D:\\Projects\\GItHub\\InvidositeHtmlgit\\src"
+UiServerUrl = "localhost:4201"
+WebGenWebPageDir = "D:\\Projects\\GItHub\\InvidositeHtmlgit"
+WebGenLocation = "D:\\ruby\\ruby_2_3_1\\bin"
+WebgenOutIndexFile = "file:///D:/Projects/GItHub/InvidositeHtmlgit/out/snapshot/index.html"
