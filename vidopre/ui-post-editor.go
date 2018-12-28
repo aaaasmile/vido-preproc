@@ -42,12 +42,19 @@ func createPageIndex(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/", http.StatusFound)
 }
 
+func viewWebgenOut(w http.ResponseWriter, r *http.Request) {
+	log.Println("Navigate to webgen out")
+	go openBrowser(Conf.WebgenOutIndexFile)
+
+	http.Redirect(w, r, "/", http.StatusFound)
+}
+
 func createSite(w http.ResponseWriter, r *http.Request) {
 	log.Println("Lancia webgen")
 
 	go execWebgen()
 
-	buildLastMsg("Webgen lanciato in una command console.")
+	buildLastMsg("Webgen lanciato in una command console, per favore controlla lì il risultato.")
 	http.Redirect(w, r, "/", http.StatusFound)
 }
 
@@ -101,6 +108,7 @@ func startEditor(title string, content string, openNewPage bool) {
 	http.HandleFunc("/save-post/", savePost)
 	http.HandleFunc("/create-page-index/", createPageIndex)
 	http.HandleFunc("/exec-webgen/", createSite)
+	http.HandleFunc("/open-webgen-out/", viewWebgenOut)
 	http.Handle("/static/", http.StripPrefix("/static", http.FileServer(http.Dir("static"))))
 	log.Println("Starting http server at ", urlInbrowser)
 	if openNewPage {
