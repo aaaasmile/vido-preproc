@@ -1,6 +1,7 @@
 package vidopre
 
 import (
+	"encoding/json"
 	"fmt"
 	"html/template"
 	"log"
@@ -63,18 +64,22 @@ func createSite(w http.ResponseWriter, r *http.Request) {
 func savePost(w http.ResponseWriter, r *http.Request) {
 	log.Println("Save post in ", selectedFileName)
 	selectedContent = r.FormValue("contentpost")
+	writeContentInFile(selectedFileName, selectedContent)
+	http.Redirect(w, r, "/", http.StatusFound)
+}
+
+func writeContentInFile(fname string, content string) {
 	afs := &afero.Afero{Fs: appfs}
-	f, err := afs.Create(selectedFileName) // Nota che con open non riesco a scrivere
+	f, err := afs.Create(fname) // Nota che con open non riesco a scrivere
 	if err != nil {
 		log.Fatalln("Error open file", err)
 	}
 	defer f.Close()
-	_, err = f.WriteString(selectedContent)
+	_, err = f.WriteString(content)
 	if err != nil {
 		log.Fatal("Unable to save the file:", err)
 	}
-	buildLastMsg(fmt.Sprintf("Messaggio salvato su %s", selectedFileName))
-	http.Redirect(w, r, "/", http.StatusFound)
+	buildLastMsg(fmt.Sprintf("Messaggio salvato su %s. %d bytes", fname, len(content)))
 }
 
 func editPostRoot(w http.ResponseWriter, req *http.Request) {
@@ -126,13 +131,49 @@ func handleIndexPost(w http.ResponseWriter, req *http.Request) {
 		log.Println("DO clear last message", val)
 		if val[0] == "preprocessor" {
 			lastMessageInEditor = ""
+			writeBoolRes(w, req, true)
 			return
 		}
+	}
+	if val, ok := q["openwebgenout"]; ok {
+		log.Println("DO open webgen output in a new browser window", val)
+		if val[0] == "" {
+			go openBrowser(Conf.WebgenOutIndexFile)
+			writeBoolRes(w, req, true)
+			return
+		}
+	}
+
+	if val, ok := q["save"]; ok {
+		log.Println("DO save the current post", val)
+		selectedContent = val[0]
+		writeContentInFile(selectedFileName, selectedContent)
+		writeStringRes(w, req, lastMessageInEditor)
+		return
 	}
 
 	log.Println("Command invalid", req.RequestURI)
 	w.WriteHeader(http.StatusBadRequest)
 	w.Write([]byte("400 - Bad Request"))
+}
+
+func writeBoolRes(w http.ResponseWriter, req *http.Request, res bool) {
+	js, err := json.Marshal(res)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	fmt.Fprint(w, string(js))
+}
+func writeStringRes(w http.ResponseWriter, req *http.Request, res string) {
+	js, err := json.Marshal(res)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	fmt.Fprint(w, string(js))
 }
 
 func checkDoRquest(reqURI string) bool {
@@ -154,7 +195,6 @@ func startEditor(title string, content string, openNewPage bool) {
 	http.HandleFunc("/save-post/", savePost)
 	http.HandleFunc("/create-page-index/", createPageIndex)
 	http.HandleFunc("/exec-webgen/", createSite)
-	http.HandleFunc("/open-webgen-out/", viewWebgenOut)
 	http.Handle("/static/", http.StripPrefix("/static", http.FileServer(http.Dir("static"))))
 	log.Println("Starting http server at ", urlInbrowser)
 	if openNewPage {
