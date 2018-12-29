@@ -51,6 +51,22 @@ $('#btbuildindex')
   })
   ;
 
+$('#btrunwebgen')
+  .popup({
+    inline: true
+  })
+  .on('click', () => {
+    console.log("Run webgen to update the full site")
+    let url = "do?"
+    url = url + $.param({ "runwebgen": '' })
+    $.post(url, res => {
+      let cont = JSON.parse(res) // res is always in Json, also if I send a simply string
+      console.log(cont)
+      writeFeedback(cont)
+    })
+  })
+  ;
+
 $('#btgotowebgenout')
   .popup({
     inline: true
