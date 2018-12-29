@@ -10,6 +10,7 @@
 
   <script src="static/js/jquery-3.3.1.min.js"></script>
   <script src="static/js/semantic-2.4-2.min.js"></script>
+  <script src="static/js/textile.js"></script>
 
   <link rel="stylesheet" href="static/css/semantic.css" />
 </head>
@@ -27,9 +28,15 @@
         <label>File name</label>
         <input placeholder="TitlePost" disabled="true" name="titlepost" type="text" size="35" value='{{printf "%s" .TitlePost}}'>
       </div>
-      <div class="field">
-        <label>Post</label>
-        <textarea rows="25" cols="110" name="contentpost" placeholder="ContentPost">{{printf "%s" .ContentPost}}</textarea>
+      <div class="two fields">
+        <div class="field">
+          <label>Post</label>
+          <textarea rows="25" cols="110" name="contentpost" placeholder="ContentPost">{{printf "%s" .ContentPost}}</textarea>
+        </div>
+        <div class="field">
+          <label>Preview</label>
+          <div id="preview"></div>
+        </div>
       </div>
       <div>
         <input class="ui blue submit button" type="submit" value="Save">
@@ -37,11 +44,13 @@
         <a class="ui button" href="/exec-webgen/">Start Webgen</a>
         <a class="ui button" href="/open-webgen-out/">Navigate to webgen out</a>
       </div>
+
     </form>
+
     {{if .LastMessage}}
     <div class="ui message transition">
       <i class="close icon"></i>
-      
+
       <div class="header">
         Preprocessor
       </div>
@@ -49,6 +58,9 @@
     </div>
     {{end}}
 
+    <div class="ui vertical segment">
+      <button class="ui button" id="bttextile">Preview</button>
+    </div>
     <div class="ui vertical segment">
       <p>Il post si edita con il formato <a href="http://redcloth.org/" target="_blank">RedCloth</a>. I link sono del
         formato <code>"testo":http://url</code>.
@@ -82,6 +94,7 @@
 </body>
 <!-- Put here script to beloaded-->
 <script src="static/js/custom.js"></script>
+
 </html>
 
 {{end}}

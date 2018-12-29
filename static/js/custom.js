@@ -1,3 +1,4 @@
+console.log('Hi, custom is loaded.')
 $('.message .close')
   .on('click', function() {
     $(this)
@@ -7,3 +8,11 @@ $('.message .close')
     ;
   })
 ;
+
+$('#bttextile')
+  .on('click', () =>{
+    console.log("Preview clicked!")
+    //console.log( textile( "I am using __textile__." ) );
+    let htmlprev = textile( "I am using __textile__." )
+    $('#preview').append(htmlprev)
+  });

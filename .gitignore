@@ -2,3 +2,4 @@
 data/post-src/*.txt
 data/page-out/*.page
 data/test/*.page
+tmp/
