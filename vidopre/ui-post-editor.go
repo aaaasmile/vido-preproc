@@ -85,11 +85,30 @@ func handleIndexPost(w http.ResponseWriter, req *http.Request) {
 			return
 		}
 	}
+
 	if val, ok := q["openwebgenout"]; ok {
 		log.Println("DO open webgen output in a new browser window", val)
 		if val[0] == "" {
 			go openBrowser(Conf.WebgenOutIndexFile)
 			writeBoolRes(w, req, true)
+			return
+		}
+	}
+
+	if val, ok := q["buildindex"]; ok {
+		log.Println("DO build index pages", val)
+		if val[0] == "" {
+			createPageIndex()
+			writeStringRes(w, req, lastMessageInEditor)
+			return
+		}
+	}
+
+	if val, ok := q["runwebgen"]; ok {
+		log.Println("DO run webgen", val)
+		if val[0] == "" {
+			createSite()
+			writeStringRes(w, req, lastMessageInEditor)
 			return
 		}
 	}
@@ -120,13 +139,11 @@ func buildLastMsg(msg string) {
 	lastMessageInEditor = fmt.Sprintf("[%s] %s", tt.Format("2006-01-02 15:04:05"), msg)
 }
 
-func createPageIndex(w http.ResponseWriter, r *http.Request) {
-	log.Println("Crea le pagine index asemblando tutti i vari post")
+func createPageIndex() {
+	log.Println("Build index pages merging all posts")
 	CreateIndexPostPages(Conf.PostSourceDir, Conf.OutDirPage, Conf.PostPerPage)
 
 	buildLastMsg(fmt.Sprintf("Index pages created in  %s", Conf.OutDirPage))
-
-	http.Redirect(w, r, "/", http.StatusFound)
 }
 
 func viewWebgenOut(w http.ResponseWriter, r *http.Request) {
@@ -136,13 +153,12 @@ func viewWebgenOut(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/", http.StatusFound)
 }
 
-func createSite(w http.ResponseWriter, r *http.Request) {
-	log.Println("Lancia webgen")
+func createSite() {
+	log.Println("Run webgen")
 
 	go execWebgen()
 
 	buildLastMsg("Webgen lanciato in una command console, per favore controlla lì il risultato.")
-	http.Redirect(w, r, "/", http.StatusFound)
 }
 
 func savePost(w http.ResponseWriter, r *http.Request) {
@@ -201,9 +217,7 @@ func startEditor(title string, content string, openNewPage bool) {
 	surl := Conf.UiServerUrl
 	urlInbrowser := fmt.Sprintf("http://%s", surl)
 	http.HandleFunc("/", handleRoot)
-	http.HandleFunc("/save-post/", savePost)
-	http.HandleFunc("/create-page-index/", createPageIndex)
-	http.HandleFunc("/exec-webgen/", createSite)
+	http.HandleFunc("/save-post/", savePost) // used as reference
 	http.Handle("/static/", http.StripPrefix("/static", http.FileServer(http.Dir("static"))))
 	log.Println("Starting http server at ", urlInbrowser)
 	if openNewPage {

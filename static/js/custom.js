@@ -20,6 +20,9 @@ applyCloseMsg = (sel) => {
 }
 
 $('#bttextile')
+  .popup({
+    inline: true
+  })
   .on('click', () => {
     console.log("Preview clicked")
     //console.log( textile( "I am using __textile__." ) );
@@ -27,13 +30,24 @@ $('#bttextile')
     let rawtext = $('#post').val()
     let htmlprev = textile(rawtext)
     $('#preview').empty().append(htmlprev);
-  });
+  })
+  ;
 
 // popup in semnatic ui are not active by default
 // activate it only in bttextile. The data-content is expected.
-$('#bttextile')
+$('#btbuildindex')
   .popup({
     inline: true
+  })
+  .on('click', () => {
+    console.log("Create page index")
+    let url = "do?"
+    url = url + $.param({ "buildindex": '' })
+    $.post(url, res => {
+      let cont = JSON.parse(res) // res is always in Json, also if I send a simply string
+      console.log(cont)
+      writeFeedback(cont)
+    })
   })
   ;
 

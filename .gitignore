@@ -2,4 +2,7 @@
 data/post-src/*.txt
 data/page-out/*.page
 data/test/*.page
+data/test/*.config
+data/test/src/
+data/test/out/
 tmp/
