@@ -1,5 +1,5 @@
-applyCloseMsg = () => {
-  $('.message .close')
+applyCloseMsg = (sel) => {
+  $(sel)
     .on('click', function () {
       $(this)
         .closest('.message')
@@ -14,7 +14,7 @@ applyCloseMsg = () => {
         url = url + $.param({ "clear": "preprocessor" })
         $.post(url, res => {
           console.log(res)
-        })
+        });
       }
     })
 }
@@ -58,23 +58,26 @@ $('#btsave')
     console.log("Save the current post")
     let url = "do?"
     let rawtext = $('#post').val()
-    url = url + $.param({ "save": rawtext })
-    $.post(url, res => {
-      console.log(res)
-      writeFeedback(res)
+    url = url + $.param({ "save": '' })
+    $.post(url, rawtext, res => { // rawtext is a data, not a param in url
+      let cont = JSON.parse(res) // res is always in Json, also if I send a simply string
+      console.log(cont)
+      writeFeedback(cont)
     })
   })
   ;
 
 writeFeedback = (x) => {
+  let html = `<i id="feedback-close" class="close icon"></i><div class="header">Result</div><p>${x}</p>`
+  //console.log(html)
   $('#feedback')
     .empty()
     .removeClass("hidden")
-    .append(`<i class="close icon"></i><div class="header">Result</div><p>${x}</p>`)
+    .append(html)
     ;
-  applyCloseMsg() // reapply because the close icon handler
+  applyCloseMsg('#feedback-close') // reapply because the close icon handler
 }
 
 
-applyCloseMsg()
+applyCloseMsg('#preproc-close')
 console.log('Custom script is ready.')

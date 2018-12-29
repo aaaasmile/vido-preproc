@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"html/template"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"net/url"
@@ -31,58 +32,7 @@ var (
 	lastMessageInEditor string
 )
 
-func buildLastMsg(msg string) {
-	tt := time.Now()
-	lastMessageInEditor = fmt.Sprintf("[%s] %s", tt.Format("2006-01-02 15:04:05"), msg)
-}
-
-func createPageIndex(w http.ResponseWriter, r *http.Request) {
-	log.Println("Crea le pagine index asemblando tutti i vari post")
-	CreateIndexPostPages(Conf.PostSourceDir, Conf.OutDirPage, Conf.PostPerPage)
-
-	buildLastMsg(fmt.Sprintf("Index pages created in  %s", Conf.OutDirPage))
-
-	http.Redirect(w, r, "/", http.StatusFound)
-}
-
-func viewWebgenOut(w http.ResponseWriter, r *http.Request) {
-	log.Println("Navigate to webgen out")
-	go openBrowser(Conf.WebgenOutIndexFile)
-
-	http.Redirect(w, r, "/", http.StatusFound)
-}
-
-func createSite(w http.ResponseWriter, r *http.Request) {
-	log.Println("Lancia webgen")
-
-	go execWebgen()
-
-	buildLastMsg("Webgen lanciato in una command console, per favore controlla lì il risultato.")
-	http.Redirect(w, r, "/", http.StatusFound)
-}
-
-func savePost(w http.ResponseWriter, r *http.Request) {
-	log.Println("Save post in ", selectedFileName)
-	selectedContent = r.FormValue("contentpost")
-	writeContentInFile(selectedFileName, selectedContent)
-	http.Redirect(w, r, "/", http.StatusFound)
-}
-
-func writeContentInFile(fname string, content string) {
-	afs := &afero.Afero{Fs: appfs}
-	f, err := afs.Create(fname) // Nota che con open non riesco a scrivere
-	if err != nil {
-		log.Fatalln("Error open file", err)
-	}
-	defer f.Close()
-	_, err = f.WriteString(content)
-	if err != nil {
-		log.Fatal("Unable to save the file:", err)
-	}
-	buildLastMsg(fmt.Sprintf("Messaggio salvato su %s. %d bytes", fname, len(content)))
-}
-
-func editPostRoot(w http.ResponseWriter, req *http.Request) {
+func handleRoot(w http.ResponseWriter, req *http.Request) {
 	log.Println("HTTP: Edit post with title", selectedTitle)
 	switch req.Method {
 	case "GET":
@@ -91,8 +41,8 @@ func editPostRoot(w http.ResponseWriter, req *http.Request) {
 		log.Println("POST", req.RequestURI)
 		handleIndexPost(w, req)
 	}
-
 }
+
 func handleIndexGet(w http.ResponseWriter, req *http.Request) {
 	pagectx := &ctxPostEdit{
 		Buildnr:            BuildNr,
@@ -146,15 +96,74 @@ func handleIndexPost(w http.ResponseWriter, req *http.Request) {
 
 	if val, ok := q["save"]; ok {
 		log.Println("DO save the current post", val)
-		selectedContent = val[0]
-		writeContentInFile(selectedFileName, selectedContent)
-		writeStringRes(w, req, lastMessageInEditor)
-		return
+		if val[0] == "" {
+			rawbody, err := ioutil.ReadAll(req.Body)
+			if err == nil {
+				selectedContent = string(rawbody)
+				//fmt.Printf("*** content\n:%s\n", rawbody)
+				writeContentInFile(selectedFileName, selectedContent)
+				writeStringRes(w, req, lastMessageInEditor)
+				return
+			} else {
+				log.Printf("Error in body read", err)
+			}
+		}
 	}
 
 	log.Println("Command invalid", req.RequestURI)
 	w.WriteHeader(http.StatusBadRequest)
 	w.Write([]byte("400 - Bad Request"))
+}
+
+func buildLastMsg(msg string) {
+	tt := time.Now()
+	lastMessageInEditor = fmt.Sprintf("[%s] %s", tt.Format("2006-01-02 15:04:05"), msg)
+}
+
+func createPageIndex(w http.ResponseWriter, r *http.Request) {
+	log.Println("Crea le pagine index asemblando tutti i vari post")
+	CreateIndexPostPages(Conf.PostSourceDir, Conf.OutDirPage, Conf.PostPerPage)
+
+	buildLastMsg(fmt.Sprintf("Index pages created in  %s", Conf.OutDirPage))
+
+	http.Redirect(w, r, "/", http.StatusFound)
+}
+
+func viewWebgenOut(w http.ResponseWriter, r *http.Request) {
+	log.Println("Navigate to webgen out")
+	go openBrowser(Conf.WebgenOutIndexFile)
+
+	http.Redirect(w, r, "/", http.StatusFound)
+}
+
+func createSite(w http.ResponseWriter, r *http.Request) {
+	log.Println("Lancia webgen")
+
+	go execWebgen()
+
+	buildLastMsg("Webgen lanciato in una command console, per favore controlla lì il risultato.")
+	http.Redirect(w, r, "/", http.StatusFound)
+}
+
+func savePost(w http.ResponseWriter, r *http.Request) {
+	log.Println("Save post in ", selectedFileName)
+	selectedContent = r.FormValue("contentpost")
+	writeContentInFile(selectedFileName, selectedContent)
+	http.Redirect(w, r, "/", http.StatusFound)
+}
+
+func writeContentInFile(fname string, content string) {
+	afs := &afero.Afero{Fs: appfs}
+	f, err := afs.Create(fname) // Nota che con open non riesco a scrivere
+	if err != nil {
+		log.Fatalln("Error open file", err)
+	}
+	defer f.Close()
+	_, err = f.WriteString(content)
+	if err != nil {
+		log.Fatal("Unable to save the file:", err)
+	}
+	buildLastMsg(fmt.Sprintf("Messaggio salvato su %s. %d bytes", fname, len(content)))
 }
 
 func writeBoolRes(w http.ResponseWriter, req *http.Request, res bool) {
@@ -191,7 +200,7 @@ func startEditor(title string, content string, openNewPage bool) {
 
 	surl := Conf.UiServerUrl
 	urlInbrowser := fmt.Sprintf("http://%s", surl)
-	http.HandleFunc("/", editPostRoot)
+	http.HandleFunc("/", handleRoot)
 	http.HandleFunc("/save-post/", savePost)
 	http.HandleFunc("/create-page-index/", createPageIndex)
 	http.HandleFunc("/exec-webgen/", createSite)
