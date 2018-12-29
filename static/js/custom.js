@@ -13,6 +13,8 @@ $('#bttextile')
   .on('click', () =>{
     console.log("Preview clicked!")
     //console.log( textile( "I am using __textile__." ) );
-    let htmlprev = textile( "I am using __textile__." )
-    $('#preview').append(htmlprev)
+    //let htmlprev = textile( "I am using __textile__." )
+    let rawtext = $('#post').val()
+    let htmlprev = textile(rawtext)
+    $('#preview').empty().append(htmlprev)
   });
