@@ -34,6 +34,8 @@ git remote add origin https://github.com/aaaasmile/vido-preproc.git
 git push -u origin master
 
 ==TODO 
+- Prima di sottoporre il preview a textile, si potrebbe risolvere {relocatable} per avere le immagini
+nella preview.
 - Editare altri post usando il titolo del file invece di editare sempre l'ultimo
 - RedCloth redering in browser live (vedi sito RedCloth) e non dopo webgen.
 RedCloth usa una soluzione server in ruby che non è utilizzabile. In JS direttamente 

@@ -12,7 +12,7 @@ import (
 )
 
 var (
-	defOutDir = "..\\..\\tmp\\vido-preproc-deployed"
+	defOutDir = "..\\vido-preproc-deployed"
 )
 
 func main() {
