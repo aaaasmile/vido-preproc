@@ -5,9 +5,11 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"net/url"
 	"os/exec"
 	"path/filepath"
 	"runtime"
+	"strings"
 	"time"
 
 	"github.com/spf13/afero"
@@ -75,9 +77,18 @@ func savePost(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/", http.StatusFound)
 }
 
-func editPost(w http.ResponseWriter, r *http.Request) {
+func editPostRoot(w http.ResponseWriter, req *http.Request) {
 	log.Println("HTTP: Edit post with title", selectedTitle)
+	switch req.Method {
+	case "GET":
+		handleIndexGet(w, req)
+	case "POST":
+		log.Println("POST", req.RequestURI)
+		handleIndexPost(w, req)
+	}
 
+}
+func handleIndexGet(w http.ResponseWriter, req *http.Request) {
 	pagectx := &ctxPostEdit{
 		Buildnr:            BuildNr,
 		ContentPost:        selectedContent,
@@ -96,6 +107,41 @@ func editPost(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func handleIndexPost(w http.ResponseWriter, req *http.Request) {
+	u, err := url.Parse(req.RequestURI)
+	if err != nil {
+		log.Println("Error uri: ", err)
+		return
+	}
+	if ok := checkDoRquest(req.RequestURI); !ok {
+		log.Println("Command invalid", req.RequestURI)
+		w.WriteHeader(http.StatusBadRequest)
+		w.Write([]byte("400 - Bad Request"))
+		return
+	}
+	q := u.Query()
+	log.Println(q) // interface: do?clear=preprocessor
+
+	if val, ok := q["clear"]; ok {
+		log.Println("DO clear last message", val)
+		if val[0] == "preprocessor" {
+			lastMessageInEditor = ""
+			return
+		}
+	}
+
+	log.Println("Command invalid", req.RequestURI)
+	w.WriteHeader(http.StatusBadRequest)
+	w.Write([]byte("400 - Bad Request"))
+}
+
+func checkDoRquest(reqURI string) bool {
+	aa := strings.Split(reqURI, "/")
+	cmd := aa[len(aa)-1]
+	//fmt.Println(cmd)
+	return strings.HasPrefix(cmd, "do")
+}
+
 func startEditor(title string, content string, openNewPage bool) {
 
 	selectedContent = content
@@ -104,7 +150,7 @@ func startEditor(title string, content string, openNewPage bool) {
 
 	surl := Conf.UiServerUrl
 	urlInbrowser := fmt.Sprintf("http://%s", surl)
-	http.HandleFunc("/", editPost)
+	http.HandleFunc("/", editPostRoot)
 	http.HandleFunc("/save-post/", savePost)
 	http.HandleFunc("/create-page-index/", createPageIndex)
 	http.HandleFunc("/exec-webgen/", createSite)

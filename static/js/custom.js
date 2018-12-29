@@ -6,6 +6,14 @@ $('.message .close')
       //.fadeToggle() // Nota questo non è quello che si vede in semnati ui (.transition("fade")). Ma è la funzione presa da jquery senza usare semantic-2.4-2.min.js
       .transition('fade') // per usare questo fade, bisogna includere anche semantic-2.4-2.min.js (270k di roba, solo per questa funzione!!)
       ;
+    // send also a message to the server to clear the message
+    let name = $(this).closest('.message').attr("name")
+    console.log("Clear this: ", name)
+    let url = "do?"
+    url = url + $.param({ "clear": name })
+    $.post(url, res => {
+      console.log(res)
+    })
   })
   ;
 

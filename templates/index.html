@@ -49,7 +49,7 @@
     </form>
 
     {{if .LastMessage}}
-    <div class="ui message transition">
+    <div name="preprocessor" class="ui message transition">
       <i class="close icon"></i>
 
       <div class="header">
@@ -63,7 +63,7 @@
       
     </div>
     <div class="ui vertical segment">
-      <p>Il post si edita con il formato textile, dove webegen usa <a href="http://redcloth.org/" target="_blank">RedCloth</a> per il render. I link sono del
+      <p>Il post si edita con il formato <a href="http://borgar.github.com/textile-js/" target="_blank">textile</a> per il render (in webgen è RedCloth). I link sono del
         formato <code>"testo":http://url</code>.
         Nota che le apici sono <b>SOLO</b> attorno alla prima parola, quella prima dei due punti.</p>
     </div>

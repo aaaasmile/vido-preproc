@@ -19,7 +19,7 @@ type Config struct {
 }
 
 const (
-	BuildNr = "0.2.20181228-00"
+	BuildNr = "0.3.20181229-00"
 )
 
 var Conf = &Config{
