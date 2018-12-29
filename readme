@@ -34,11 +34,10 @@ git remote add origin https://github.com/aaaasmile/vido-preproc.git
 git push -u origin master
 
 ==TODO 
+- Editare altri post usando il titolo del file invece di editare sempre l'ultimo
 - RedCloth redering in browser live (vedi sito RedCloth) e non dopo webgen.
 RedCloth usa una soluzione server in ruby che non è utilizzabile. In JS direttamente 
-posso usare https://github.com/borgar/textile-js.
-
-- Editare altri post usando il titolo del file invece di editare sempre l'ultimo
+posso usare https://github.com/borgar/textile-js. [DONE]
 - Nella uicmd va implementato il comando save. [DONE]
 
 == Comandi
@@ -51,5 +50,5 @@ vido-preproc --cmd  createindex
 Lo step successivo è quello di lanciare webgen per creare html.
 
 == tags
-git tag -a v0.1.3 -m "first realese"
+git tag -a v0.3.20181229-00 -m "0.3.20181229-00 realese"
 git push --tags
