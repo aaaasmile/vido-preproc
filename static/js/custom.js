@@ -19,6 +19,8 @@ $('#bttextile')
     $('#preview').empty().append(htmlprev)
   });
 
+// popup in semnatic ui are not active by default
+// activate it only in bttextile. The data-content is expected.
 $('#bttextile')
   .popup({
     inline: true
