@@ -1,7 +1,7 @@
 # vido-preproc
 Lo scopo di questa piccola utilità è quello di avere un pre-processor,
 per il sito dell'invido, che crei le pagine indexxxx.page da sottoporre poi al
-processo di [Webgen](https://github.com/gettalong/webgen). Il sito invido.it viene infatti
+processo di [Webgen](https://github.com/gettalong/webgen). Il sito [invido.it](https://invido.it) viene infatti
 generato con generatore statico di HTML.  
 
 ![alt text](https://github.com/aaaasmile/vido-preproc/blob/master/doc/12-12-_2020_18-51-18.png?raw=true)
