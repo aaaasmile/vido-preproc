@@ -6,4 +6,4 @@ data/test/*.config
 data/test/src/
 data/test/out/
 tmp/
-vido-preproc-deployed/
+vido-preproc-deployed/*.zip
