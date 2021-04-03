@@ -62,9 +62,12 @@ func CreateIndexPostPages(dirIn string, dirOut string, postPerPage int) {
 		log.Fatal(err)
 	}
 
-	numPages := len(items)/postPerPage + 1
+	numPages := len(items) / postPerPage
+	if len(items)%postPerPage != 0 {
+		numPages += 1
+	}
 	curPageNum := numPages - 1
-	log.Printf("Recognized %d posts, pages %d", len(items), numPages)
+	log.Printf("Recognized %d posts, pages %d / %d", len(items), numPages, postPerPage)
 	ctx := &CtxIndexPage{
 		TotPages:     numPages,
 		PostPerPages: postPerPage,
