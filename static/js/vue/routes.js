@@ -1,6 +1,6 @@
-//import Dashboard from './views/Dashboard.js'
+import Dashboard from './views/dashboard.js'
 
 
 export default [
-  //{ path: '/', icon: 'dashboard', title: 'Dashboard', component: Dashboard },
+  { path: '/', icon: 'dashboard', title: 'Dashboard', component: Dashboard },
 ]
