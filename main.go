@@ -6,6 +6,7 @@ import (
 	"log"
 
 	"github.com/aaaasmile/vido-preproc/vidopre"
+	"github.com/aaaasmile/vido-preproc/web"
 )
 
 const (
@@ -16,14 +17,15 @@ const (
 func main() {
 	cmd := flag.String("cmd", "", "Commands: splitpages, newpost, createindex")
 	var configfile = flag.String("config", "config.toml", "Configuration file path")
-	var ver = flag.Bool("version", false, "Prints current version")
+	var ver = flag.Bool("ver", false, "Prints current version")
 	var title = flag.String("title", "", "Title of the new post")
-	var uicmd = flag.String("uicmd", "new", "Edit post with browser ui. Commands: new, last")
+	var uicmd = flag.String("uicmd", "", "Edit post with browser ui. Commands: new, last")
 	var nobrowser = flag.Bool("nobrowser", false, "Do not open the editor into a new browser page (use it if you have it already open)")
 	flag.Parse()
 
 	if *ver {
-		fmt.Println("vido-preproc version ", vidopre.BuildNr)
+		fmt.Println("vido-preproc version ", idl.BuildNr)
+		fmt.Println(help_usage)
 		return
 	}
 
@@ -32,18 +34,13 @@ func main() {
 	switch *cmd {
 	case "splitpages":
 		vidopre.SplitPages(vidopre.Conf.PageSplitterInputDir, vidopre.Conf.PostSourceDir)
-		break
 	case "newpost":
 		if *title == "" {
 			log.Fatalln(new_title_needed)
 		}
 		vidopre.NewPost(vidopre.Conf.PostSourceDir, *title, "")
-		break
 	case "createindex":
 		vidopre.CreateIndexPostPages(vidopre.Conf.PostSourceDir, vidopre.Conf.OutDirPage, vidopre.Conf.PostPerPage)
-		break
-	default:
-		fmt.Println(help_usage)
 	}
 
 	openInBrowser := !*nobrowser
@@ -54,12 +51,11 @@ func main() {
 		}
 		vidopre.NewPost(vidopre.Conf.PostSourceDir, *title, "")
 		vidopre.EditLastPost(vidopre.Conf.PostSourceDir, openInBrowser)
-		break
 	case "last":
 		vidopre.EditLastPost(vidopre.Conf.PostSourceDir, openInBrowser)
-		break
-	default:
-		fmt.Println(help_usage)
 	}
-
+	log.Println("Start the service as console process")
+	if err := web.RunService(nil, nil, *configfile); err != nil {
+		log.Fatal("Error: ", err)
+	}
 }

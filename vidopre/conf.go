@@ -18,10 +18,6 @@ type Config struct {
 	WebgenOutIndexFile   string
 }
 
-const (
-	BuildNr = "0.4.20210403-00"
-)
-
 var Conf = &Config{
 	OutDirPage:  "./data/page-out",
 	PostPerPage: 13,
