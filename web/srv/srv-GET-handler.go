@@ -39,7 +39,7 @@ func handleGetApp(w http.ResponseWriter, req *http.Request) error {
 		VuetifyLibName: conf.Current.VuetifyLibName,
 		VueLibName:     conf.Current.VueLibName,
 	}
-	templName := "template/vue/index.html"
+	templName := "templates/vue/index.html"
 
 	tmplIndex := template.Must(template.New("AppIndex").ParseFiles(util.GetFullPath(templName)))
 

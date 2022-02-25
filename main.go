@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"log"
+	"os"
 
 	"github.com/aaaasmile/vido-preproc/conf"
 	"github.com/aaaasmile/vido-preproc/vidopre"
@@ -58,6 +59,10 @@ func main() {
 	case "last":
 		vidopre.EditLastPost(conf.Current.PostSourceDir, openInBrowser)
 	}
+	if *uicmd != "" || *cmd != "" {
+		os.Exit(0)
+	}
+
 	log.Println("Start the service as console process")
 	if err := web.RunService(nil, nil, *configfile); err != nil {
 		log.Fatal("Error: ", err)

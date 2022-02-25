@@ -12,7 +12,6 @@ type Config struct {
 	PageSplitterInputDir string
 	PostSourceDir        string
 	OutDirPage           string
-	UiServerUrl          string
 	WebGenWebPageDir     string
 	WebGenLocation       string
 	WebgenOutIndexFile   string

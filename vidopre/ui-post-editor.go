@@ -216,7 +216,7 @@ func startEditor(title string, content string, openNewPage bool) {
 	selectedTitle = title
 	lastMessageInEditor = ""
 
-	surl := conf.Current.UiServerUrl
+	surl := conf.Current.ServiceURL
 	urlInbrowser := fmt.Sprintf("http://%s", surl)
 	http.HandleFunc("/", handleRoot)
 	http.HandleFunc("/save-post/", savePost) // used as reference
