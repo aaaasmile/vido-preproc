@@ -14,6 +14,8 @@ import (
 	"strings"
 	"time"
 
+	"github.com/aaaasmile/vido-preproc/conf"
+	"github.com/aaaasmile/vido-preproc/web/idl"
 	"github.com/spf13/afero"
 )
 
@@ -45,11 +47,11 @@ func handleRoot(w http.ResponseWriter, req *http.Request) {
 
 func handleIndexGet(w http.ResponseWriter, req *http.Request) {
 	pagectx := &ctxPostEdit{
-		Buildnr:            BuildNr,
+		Buildnr:            idl.Buildnr,
 		ContentPost:        selectedContent,
 		TitlePost:          selectedTitle,
 		LastMessage:        lastMessageInEditor,
-		WebgenOutIndexFile: Conf.WebgenOutIndexFile,
+		WebgenOutIndexFile: conf.Current.WebgenOutIndexFile,
 	}
 
 	templName := "templates/index.html"
@@ -89,7 +91,7 @@ func handleIndexPost(w http.ResponseWriter, req *http.Request) {
 	if val, ok := q["openwebgenout"]; ok {
 		log.Println("DO open webgen output in a new browser window", val)
 		if val[0] == "" {
-			go openBrowser(Conf.WebgenOutIndexFile)
+			go openBrowser(conf.Current.WebgenOutIndexFile)
 			writeBoolRes(w, req, true)
 			return
 		}
@@ -141,14 +143,14 @@ func buildLastMsg(msg string) {
 
 func createPageIndex() {
 	log.Println("Build index pages merging all posts")
-	CreateIndexPostPages(Conf.PostSourceDir, Conf.OutDirPage, Conf.PostPerPage)
+	CreateIndexPostPages(conf.Current.PostSourceDir, conf.Current.OutDirPage, conf.Current.PostPerPage)
 
-	buildLastMsg(fmt.Sprintf("Index pages created in  %s", Conf.OutDirPage))
+	buildLastMsg(fmt.Sprintf("Index pages created in  %s", conf.Current.OutDirPage))
 }
 
 func viewWebgenOut(w http.ResponseWriter, r *http.Request) {
 	log.Println("Navigate to webgen out")
-	go openBrowser(Conf.WebgenOutIndexFile)
+	go openBrowser(conf.Current.WebgenOutIndexFile)
 
 	http.Redirect(w, r, "/", http.StatusFound)
 }
@@ -214,7 +216,7 @@ func startEditor(title string, content string, openNewPage bool) {
 	selectedTitle = title
 	lastMessageInEditor = ""
 
-	surl := Conf.UiServerUrl
+	surl := conf.Current.UiServerUrl
 	urlInbrowser := fmt.Sprintf("http://%s", surl)
 	http.HandleFunc("/", handleRoot)
 	http.HandleFunc("/save-post/", savePost) // used as reference
@@ -232,12 +234,12 @@ func execWebgen() error {
 	var args []string
 	if runtime.GOOS == "windows" {
 		cmd = "cmd"
-		args = []string{"/c", "start", fmt.Sprintf("%s\\webgen", Conf.WebGenLocation), "-d", Conf.WebGenWebPageDir}
+		args = []string{"/c", "start", fmt.Sprintf("%s\\webgen", conf.Current.WebGenLocation), "-d", conf.Current.WebGenWebPageDir}
 	} else {
 		log.Fatal("OS not recognized")
 		return fmt.Errorf("OS not supported %s", runtime.GOOS)
 	}
-	log.Printf("Exec webgen (source %s) in %s", Conf.WebGenLocation, Conf.WebGenWebPageDir)
+	log.Printf("Exec webgen (source %s) in %s", conf.Current.WebGenLocation, conf.Current.WebGenWebPageDir)
 	out, err := exec.Command(cmd, args...).Output()
 	if err != nil {
 		log.Printf("Error on executing webgen: %v", err)

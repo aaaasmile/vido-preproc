@@ -7,8 +7,8 @@ import (
 	"net/url"
 
 	"github.com/aaaasmile/vido-preproc/conf"
+	"github.com/aaaasmile/vido-preproc/util"
 	"github.com/aaaasmile/vido-preproc/web/idl"
-	"github.com/aaaasmile/vido-preproc/web/util"
 )
 
 type PageCtx struct {

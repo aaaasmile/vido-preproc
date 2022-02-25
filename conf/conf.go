@@ -1,4 +1,4 @@
-package vidopre
+package conf
 
 import (
 	"log"
@@ -16,9 +16,14 @@ type Config struct {
 	WebGenWebPageDir     string
 	WebGenLocation       string
 	WebgenOutIndexFile   string
+	VuetifyLibName       string
+	VueLibName           string
+	RootURLPattern       string
+	ServiceURL           string
+	DebugVerbose         bool
 }
 
-var Conf = &Config{
+var Current = &Config{
 	OutDirPage:  "./data/page-out",
 	PostPerPage: 13,
 }
@@ -28,8 +33,8 @@ func ReadConfig(configfile string) *Config {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if _, err := toml.DecodeFile(configfile, &Conf); err != nil {
+	if _, err := toml.DecodeFile(configfile, &Current); err != nil {
 		log.Fatal(err)
 	}
-	return Conf
+	return Current
 }

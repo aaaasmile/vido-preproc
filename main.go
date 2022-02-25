@@ -5,8 +5,10 @@ import (
 	"fmt"
 	"log"
 
+	"github.com/aaaasmile/vido-preproc/conf"
 	"github.com/aaaasmile/vido-preproc/vidopre"
 	"github.com/aaaasmile/vido-preproc/web"
+	"github.com/aaaasmile/vido-preproc/web/idl"
 )
 
 const (
@@ -24,23 +26,25 @@ func main() {
 	flag.Parse()
 
 	if *ver {
-		fmt.Println("vido-preproc version ", idl.BuildNr)
+		fmt.Println("vido-preproc version ", idl.Buildnr)
 		fmt.Println(help_usage)
 		return
 	}
 
-	vidopre.ReadConfig(*configfile)
+	if *uicmd != "" || *cmd != "" {
+		conf.ReadConfig(*configfile)
+	}
 
 	switch *cmd {
 	case "splitpages":
-		vidopre.SplitPages(vidopre.Conf.PageSplitterInputDir, vidopre.Conf.PostSourceDir)
+		vidopre.SplitPages(conf.Current.PageSplitterInputDir, conf.Current.PostSourceDir)
 	case "newpost":
 		if *title == "" {
 			log.Fatalln(new_title_needed)
 		}
-		vidopre.NewPost(vidopre.Conf.PostSourceDir, *title, "")
+		vidopre.NewPost(conf.Current.PostSourceDir, *title, "")
 	case "createindex":
-		vidopre.CreateIndexPostPages(vidopre.Conf.PostSourceDir, vidopre.Conf.OutDirPage, vidopre.Conf.PostPerPage)
+		vidopre.CreateIndexPostPages(conf.Current.PostSourceDir, conf.Current.OutDirPage, conf.Current.PostPerPage)
 	}
 
 	openInBrowser := !*nobrowser
@@ -49,10 +53,10 @@ func main() {
 		if *title == "" {
 			log.Fatalln(new_title_needed)
 		}
-		vidopre.NewPost(vidopre.Conf.PostSourceDir, *title, "")
-		vidopre.EditLastPost(vidopre.Conf.PostSourceDir, openInBrowser)
+		vidopre.NewPost(conf.Current.PostSourceDir, *title, "")
+		vidopre.EditLastPost(conf.Current.PostSourceDir, openInBrowser)
 	case "last":
-		vidopre.EditLastPost(vidopre.Conf.PostSourceDir, openInBrowser)
+		vidopre.EditLastPost(conf.Current.PostSourceDir, openInBrowser)
 	}
 	log.Println("Start the service as console process")
 	if err := web.RunService(nil, nil, *configfile); err != nil {
