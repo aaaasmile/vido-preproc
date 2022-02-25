@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"log"
 
-	"./vidopre"
+	"github.com/aaaasmile/vido-preproc/vidopre"
 )
 
 const (
