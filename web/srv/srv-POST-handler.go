@@ -39,6 +39,7 @@ func handlePostOperations(w http.ResponseWriter, req *http.Request) error {
 	lastPath := getURLForRoute(req.RequestURI)
 	log.Println("Check the last path ", lastPath)
 	switch lastPath {
+	case "listPost":
 	default:
 		return fmt.Errorf("%s Not supported", lastPath)
 	}
@@ -57,7 +58,8 @@ func handlePostOperations(w http.ResponseWriter, req *http.Request) error {
 	}
 
 	switch lastPath {
-
+	case "listPost":
+		cusHandler.getPostlistFromFS(rawbody)
 	default:
 		return fmt.Errorf("%s Not supported", lastPath)
 	}
