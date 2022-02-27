@@ -1,6 +1,6 @@
 <template>
-  <div
-    class="ui message" 
+  <div 
+    class="ui message transition" 
     :class="{ hidden: isHidden }"
   >
     <i class="close icon" @click="closeToast"></i>

@@ -6,17 +6,6 @@ export default {
     }
   },
   computed: {
-    snackbar: {
-      get() {
-        return (this.$store.state.gen.errorText !== '') || (this.$store.state.gen.msgText !== '')
-      },
-      set(newVal) {
-        if (!newVal) {
-          this.$store.commit('clearErrorText')
-          this.$store.commit('clearMsgText')
-        }
-      }
-    },
     ...Vuex.mapState({
       textMsg: state => {
         if (state.gen.errorText !== '') {
@@ -43,8 +32,8 @@ export default {
     }
   },
   template: `
-  <div
-    class="ui message" 
+  <div 
+    class="ui message transition" 
     :class="{ hidden: isHidden }"
   >
     <i class="close icon" @click="closeToast"></i>
