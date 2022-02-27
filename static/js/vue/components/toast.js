@@ -19,13 +19,16 @@ export default {
     },
     ...Vuex.mapState({
       textMsg: state => {
-        if (state.gen.errorText !== ''){
+        if (state.gen.errorText !== '') {
           return state.gen.errorText
         }
         return state.gen.msgText
       },
+      isHidden: state => {
+        return (state.gen.errorText === '') && (state.gen.msgText === '')
+      },
       colorsnack: state => {
-        if (state.gen.errorText !== ""){
+        if (state.gen.errorText !== "") {
           return "red darken-4"
         }
         return ''
@@ -33,19 +36,22 @@ export default {
     })
   },
   methods: {
-    closeToast(){
+    closeToast() {
       console.log('Try to close the toast')
+      this.$store.commit('clearErrorText')
+      this.$store.commit('clearMsgText')
     }
   },
   template: `
   <div
-    class="ui message"
-    :hidden="snackbar"
+    class="ui message" 
+    :class="{ hidden: isHidden }"
   >
     <i class="close icon" @click="closeToast"></i>
     <div class="header">Message</div>
     <p>
       {{ textMsg }}
     </p>
-  </div>`
+  </div>
+`
 }
