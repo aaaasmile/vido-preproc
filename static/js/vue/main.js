@@ -1,11 +1,12 @@
 import store from './store/index.js'
 import routes from './routes.js'
+import Toast from './components/toast.js'
 
 
 export const app = new Vue({
   el: '#app',
   router: new VueRouter({ routes }),
-  components: {  },
+  components: { Toast },
   store,
   data() {
     return {
@@ -24,6 +25,7 @@ export const app = new Vue({
   },
   template: `
   <div>
+    <Toast></Toast>
     <router-view></router-view>
     <div class="ui vertical footer segment">
       <div class="ui container">
@@ -34,7 +36,10 @@ export const app = new Vue({
           </div>
           <div class="seven wide column">
             <h4 class="ui header">Info</h4>
-            <p><i class="copyright icon"></i> {{ new Date().getFullYear() }} by Invido.it</p>
+            <p>
+              <i class="copyright icon"></i> {{ new Date().getFullYear() }} by
+              Invido.it
+            </p>
           </div>
         </div>
       </div>
