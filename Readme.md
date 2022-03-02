@@ -94,3 +94,16 @@ Per vedere un po' il programma in azione si può usare:
 
 Lo step successivo è quello di lanciare webgen per creare html.
 
+
+## Element-UI
+Per aggiungere ElementUI ho usato il video qui: https://morioh.com/p/83da739c9c76
+Si tratta di creare un hello world con vue cli 3.0 e poi creare la distribuzione
+
+    npm install @vue/cli@3.0
+    node_modules/.bin/vue create hello-world
+    cd hello-world/
+    ../node_modules/.bin/vue add element
+    npm run serve
+    npm run build
+Ora nella dir dist si trovano i css e js dei plugin vendor, nel mio caso solo element.
+Questo sopra per usare la mia vue 2.0
