@@ -1,42 +1,42 @@
+import API from '../apicaller.js'
+
 export default {
-    data() {
-        return {
-            CommandImage: "",
+  data() {
+    return {
+      CommandImage: "",
 
-        }
-    },
-    created() {
-    },
-    mounted() {
-    },
-    computed: {
-        ...Vuex.mapState({
-            LastMsgText: state => {
-                return state.gen.lastMsgText
-            },
-            ContentPost: state => {
+    }
+  },
+  created() {
+    this.CommandImage = "<a href=\"{relocatable: /images/nuovaimg.PNG}\"><img width=\"300\" src=\"{relocatable: /images/nuovaimg.PNG}\"></a>"
+  },
+  mounted() {
+  },
+  computed: {
+    ...Vuex.mapState({
+      LastMsgText: state => {
+        return state.gen.lastMsgText
+      },
+      ContentPost: state => {
 
-            },
-            TitlePost:state => {
+      },
+      TitlePost: state => {
 
-            }
-        })
+      }
+    })
+  },
+  methods: {
+    openFile() {
+      console.log('Call open file')
+      API.ListPost(this, {})
     },
-    methods: {
-        echo() {
-            console.log('Call echo')
-        },
-    },
-    template: `
+  },
+  template: `
   <div class="ui container">
     <div class="ui attached message">
       <div class="header">Editing Post</div>
     </div>
-    <form
-      class="ui form attached fluid segment"
-      action="/save-post/"
-      method="POST"
-    >
+    <div class="ui form attached fluid segment">
       <div class="field">
         <label>File name</label>
         <input
@@ -57,7 +57,8 @@ export default {
             cols="110"
             name="contentpost"
             placeholder="ContentPost"
-            >{{ ContentPost }}</textarea
+            :value="ContentPost"
+            ></textarea
           >
         </div>
         <div class="field">
@@ -66,35 +67,38 @@ export default {
         </div>
       </div>
       <div>
-        <!-- <input class="ui blue submit button" type="submit" value="Save" > -->
-        <!-- Save with page reload -->
-        <a class="ui button" id="btsave" data-content="Save the current post"
+        <Button @click="openFile" class="ui button" data-content="Open file"
+          ><i class="folder open outline icon"></i
+        ></Button>
+        <Button
+          class="ui button"
+          id="btsave"
+          data-content="Save the current post"
           ><i class="save outline icon"></i
-        ></a>
-        <!-- Save without page reload -->
-        <a class="ui button" id="bttextile" data-content="Preview"
+        ></Button>
+        <Button class="ui button" id="bttextile" data-content="Preview"
           ><i class="code icon"></i
-        ></a>
-        <a
+        ></Button>
+        <Button
           class="ui button"
           id="btbuildindex"
           data-content="Create all index-00-99.page files"
-          >Create Index Pages</a
+          >Create Index Pages</Button
         >
-        <a
+        <Button
           class="ui button"
           id="btrunwebgen"
           data-content="Run webgen to update the full site"
-          >Start Webgen</a
+          >Start Webgen</Button
         >
-        <a
+        <Button
           class="ui button"
           id="btgotowebgenout"
           data-content="Open webgen output in a new browser window"
-          >Navigate to webgen out</a
+          >Navigate to webgen out</Button
         >
       </div>
-    </form>
+    </div>
 
     <div v-if="LastMsgText" name="preprocessor" class="ui message transition">
       <i id="preproc-close" class="close icon"></i>
