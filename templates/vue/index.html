@@ -15,7 +15,6 @@
   
   
   <!-- othe libs -->
-  <!-- <script src="{{.RootUrl}}static/js/ext/element-ui-chunk-2-4-5.js" rel=preload as=script></script>  -->
   <script src="{{.RootUrl}}static/js/ext/textile.js"></script>
 
   <!-- dev/prod vue -->
@@ -34,7 +33,6 @@
 <script>
   window.myapp = { buildnr: "{{.Buildnr}}" }
 </script>
-<!-- <script src=./static/js/ext/element-ui-chunk-2-4-5.js></script> -->
 <script type="module">
   import { app } from './static/js/vue/main.js?{{.Buildnr}}'
 </script>

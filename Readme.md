@@ -107,3 +107,9 @@ Si tratta di creare un hello world con vue cli 3.0 e poi creare la distribuzione
     npm run build
 Ora nella dir dist si trovano i css e js dei plugin vendor, nel mio caso solo element.
 Questo sopra per usare la mia vue 2.0
+
+### Integrazione nella App
+Non ho trovato di meglio che prendere i sorgenti dei packages dal node_module e metterli nella sottodirectory element-ui
+Sorgenti che vanno splittati in vue e js.
+I singoli componenti li ho poi messi in main.js. Molto lavoro manuale, ma almeno c'è il vantaggio che metto solo i componenti che 
+mi servono.

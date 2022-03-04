@@ -67,9 +67,7 @@ export default {
         </div>
       </div>
       <div>
-        <el-button type="primary"  @click="openFile" class="ui button" data-content="Open file"
-          ><i class="folder open outline icon"></i
-        ></el-button>
+        <el-button  @click="openFile" icon="el-icon-star-off"></el-button>
         <el-button
           class="ui button"
           id="btsave"
