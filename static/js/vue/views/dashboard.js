@@ -76,7 +76,7 @@ export default {
           ></textarea>
         </div>
         <div class="field">
-          <label>Preview</label>
+          <label>Preview Area</label>
           <div id="preview"></div>
         </div>
       </div>
@@ -84,13 +84,30 @@ export default {
         <el-tooltip
           class="item"
           effect="dark"
-          content="Top Left prompts info"
+          content="Open Folder"
           placement="top-start"
         >
           <el-button @click="openFile" icon="el-icon-folder-opened"></el-button>
         </el-tooltip>
-        <el-button @click="saveFile" icon="el-icon-folder-checked"></el-button>
-        <el-button @click="previewFile" icon="el-icon-view"></el-button>
+        <el-tooltip
+          class="item"
+          effect="dark"
+          content="Save file"
+          placement="top-start"
+        >
+          <el-button
+            @click="saveFile"
+            icon="el-icon-folder-checked"
+          ></el-button>
+        </el-tooltip>
+        <el-tooltip
+          class="item"
+          effect="dark"
+          content="Preview"
+          placement="top-start"
+        >
+          <el-button @click="previewFile" icon="el-icon-view"></el-button>
+        </el-tooltip>
         <el-button @click="createIndexPages">Create Index Pages</el-button>
         <el-button @click="startWebGen">Start Webgen</el-button>
         <el-button @click="navigateToWebGenOut"
