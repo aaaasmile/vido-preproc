@@ -53,7 +53,10 @@ export default {
     </div>
     <el-form ref="form"  label-width="120px">
       <div class="field">
-        <label>File name</label>
+        <el-form-item label="Title Post">
+          <!-- <el-input v-model="TitlePost"></el-input> -->
+        </el-form-item>
+        <!-- <label>File name</label>
         <input
           placeholder="TitlePost"
           disabled="true"
@@ -61,7 +64,7 @@ export default {
           type="text"
           size="35"
           :value="TitlePost"
-        />
+        /> -->
       </div>
       <div class="two fields">
         <div class="field">

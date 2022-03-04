@@ -5,10 +5,12 @@ import Toast from './components/toast.js'
 import Button from '../ext/element-ui/pck/button/index.js'
 import Tooltip from '../ext/element-ui/pck/tooltip/index.js'
 import Form from '../ext/element-ui/pck/form/index.js'
+import FormItem from '../ext/element-ui/pck/form-item/index.js';
 
 const components = [
   Button,
   Form,
+  FormItem,
   Tooltip
 ]
 
