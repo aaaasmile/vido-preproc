@@ -1,5 +1,6 @@
+import Throttle from './throttle.js'
 export default {
 	debounce ( delay, atBegin, callback ) {
-		return callback === undefined ? throttle(delay, atBegin, false) : throttle(delay, callback, atBegin !== false);
+		return callback === undefined ? Throttle.throttle(delay, atBegin, false) : Throttle.throttle(delay, callback, atBegin !== false);
 	}
 }
