@@ -1,7 +1,7 @@
 export default {
-    function() {
+    c_tor(para_reference, para_popper, para_options) {
         'use strict';
-
+        //console.log('c_tor -> this: ', this)    
         var root = window;
 
         // default options
@@ -105,7 +105,8 @@ export default {
          *      Set to true if you want to automatically remove the popper when you call the `destroy` method.
          */
         function Popper(reference, popper, options) {
-            this._reference = reference.jquery ? reference[0] : reference;
+            //console.log(this)
+            this._reference = reference;
             this.state = {};
 
             // if the popper variable is a configuration object, parse it to generate an HTMLElement
@@ -117,7 +118,7 @@ export default {
             }
             // otherwise, use the given HTMLElement as popper
             else {
-                this._popper = popper.jquery ? popper[0] : popper;
+                this._popper = popper;
             }
 
             // with {} we create a new object with the options inside it
@@ -252,7 +253,7 @@ export default {
             addClassNames(popper, config.classNames);
             addAttributes(popper, config.attributes);
             if (config.contentType === 'node') {
-                popper.appendChild(config.content.jquery ? config.content[0] : config.content);
+                popper.appendChild(config.content);
             } else if (config.contentType === 'html') {
                 popper.innerHTML = config.content;
             } else {
@@ -266,7 +267,7 @@ export default {
                 popper.appendChild(arrow);
             }
 
-            var parent = config.parent.jquery ? config.parent[0] : config.parent;
+            var parent = config.parent;
 
             // if the given parent is a string, use it to match an element
             // if more than one element is matched, the first one will be used as parent
@@ -1230,6 +1231,6 @@ export default {
             });
         }
 
-        return Popper;
+        return new Popper(para_reference, para_popper, para_options);
     }
 }
