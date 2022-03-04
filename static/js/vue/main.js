@@ -1,11 +1,13 @@
 import store from './store/index.js'
 import routes from './routes.js'
 import Toast from './components/toast.js'
-import Button from '../ext/element-ui/button/index.js'
-
+//Element ui components
+import Button from '../ext/element-ui/pck/button/index.js'
+import Tooltip from '../ext/element-ui/pck/tooltip/index.js'
 
 const components = [
-  Button
+  Button,
+  Tooltip
 ]
 
 components.forEach(component => {

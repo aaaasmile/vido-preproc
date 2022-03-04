@@ -81,7 +81,14 @@ export default {
         </div>
       </div>
       <div>
-        <el-button @click="openFile" icon="el-icon-folder-opened"></el-button>
+        <el-tooltip
+          class="item"
+          effect="dark"
+          content="Top Left prompts info"
+          placement="top-start"
+        >
+          <el-button @click="openFile" icon="el-icon-folder-opened"></el-button>
+        </el-tooltip>
         <el-button @click="saveFile" icon="el-icon-folder-checked"></el-button>
         <el-button @click="previewFile" icon="el-icon-view"></el-button>
         <el-button @click="createIndexPages">Create Index Pages</el-button>
