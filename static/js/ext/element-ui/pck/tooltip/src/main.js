@@ -1,5 +1,5 @@
 import Popper from '../../../utils/vue-popper.js';
-import debounce from '../../throttle-debounce/debounce.js';
+import Debounce from '../../../ext/throttle-debounce/debounce.js';
 import { addClass, removeClass, on, off } from '../../../utils/dom.js';
 import { generateId } from '../../../utils/util.js';
 
@@ -72,7 +72,7 @@ export default {
       }
     }).$mount();
 
-    this.debounceClose = debounce(200, () => this.handleClosePopper());
+    this.debounceClose = Debounce.debounce(200, () => this.handleClosePopper());
   },
 
   render(h) {
@@ -92,7 +92,7 @@ export default {
           {
             on: {
               'mouseleave': function mouseleave() {
-                _this2.setExpectedState(false);_this2.debounceClose();
+                _this2.setExpectedState(false); _this2.debounceClose();
               },
               'mouseenter': function mouseenter() {
                 _this2.setExpectedState(true);
@@ -100,7 +100,8 @@ export default {
             },
 
             ref: 'popper',
-            attrs: { role: 'tooltip',
+            attrs: {
+              role: 'tooltip',
               id: this.tooltipId,
               'aria-hidden': this.disabled || !this.showPopper ? 'true' : 'false'
             },
@@ -109,7 +110,8 @@ export default {
               value: !this.disabled && this.showPopper
             }],
 
-            'class': ['el-tooltip__popper', 'is-' + this.effect, this.popperClass] },
+            'class': ['el-tooltip__popper', 'is-' + this.effect, this.popperClass]
+          },
           [this.$slots.content || this.content]
         )]
       );
