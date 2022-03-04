@@ -76,6 +76,7 @@ export default {
   },
 
   render(h) {
+    var _this2 = this;
     if (this.popperVM) {
       this.popperVM.node = h(
         'transition',
