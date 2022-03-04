@@ -34,35 +34,35 @@
         </div>
       </div>
       <div>
-        <Button @click="openFile" class="ui button" data-content="Open file"
+        <el-button type="primary"  @click="openFile" class="ui button" data-content="Open file"
           ><i class="folder open outline icon"></i
-        ></Button>
-        <Button
+        ></el-button>
+        <el-button
           class="ui button"
           id="btsave"
           data-content="Save the current post"
           ><i class="save outline icon"></i
-        ></Button>
-        <Button class="ui button" id="bttextile" data-content="Preview"
+        ></el-button>
+        <el-button class="ui button" id="bttextile" data-content="Preview"
           ><i class="code icon"></i
-        ></Button>
-        <Button
+        ></el-button>
+        <el-button
           class="ui button"
           id="btbuildindex"
           data-content="Create all index-00-99.page files"
-          >Create Index Pages</Button
+          >Create Index Pages</el-button
         >
-        <Button
+        <el-button
           class="ui button"
           id="btrunwebgen"
           data-content="Run webgen to update the full site"
-          >Start Webgen</Button
+          >Start Webgen</el-button
         >
-        <Button
+        <el-button
           class="ui button"
           id="btgotowebgenout"
           data-content="Open webgen output in a new browser window"
-          >Navigate to webgen out</Button
+          >Navigate to webgen out</el-button
         >
       </div>
     </div>
