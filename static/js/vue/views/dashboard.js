@@ -51,7 +51,7 @@ export default {
     <div class="ui attached message">
       <div class="header">Editing Post</div>
     </div>
-    <div class="ui form attached fluid segment">
+    <el-form ref="form"  label-width="120px">
       <div class="field">
         <label>File name</label>
         <input
@@ -114,7 +114,7 @@ export default {
           >Navigate to webgen out</el-button
         >
       </div>
-    </div>
+    </el-form>
 
     <div v-if="LastMsgText" name="preprocessor" class="ui message transition">
       <i id="preproc-close" class="close icon"></i>
