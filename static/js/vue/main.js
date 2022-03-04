@@ -1,7 +1,16 @@
 import store from './store/index.js'
 import routes from './routes.js'
 import Toast from './components/toast.js'
+import Button from '../ext/element-ui/button/index.js'
 
+
+const components = [
+  Button
+]
+
+components.forEach(component => {
+  Vue.component(component.name, component);
+});
 
 export const app = new Vue({
   el: '#app',
@@ -44,7 +53,8 @@ export const app = new Vue({
         </div>
       </div>
     </div>
-  </div>`
+  </div>
+`
 })
 
 console.log('Main is here!')
