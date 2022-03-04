@@ -113,3 +113,4 @@ Non ho trovato di meglio che prendere i sorgenti dei packages dal node_module e 
 Sorgenti che vanno splittati in vue e js.
 I singoli componenti li ho poi messi in main.js. Molto lavoro manuale, ma almeno c'è il vantaggio che metto solo i componenti che 
 mi servono.
+Per le immagini delle icone vedi: https://element.eleme.io/#/en-US/component/icon#icon

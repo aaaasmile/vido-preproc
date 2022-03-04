@@ -25,8 +25,7 @@
             name="contentpost"
             placeholder="ContentPost"
             :value="ContentPost"
-            ></textarea
-          >
+          ></textarea>
         </div>
         <div class="field">
           <label>Preview</label>
@@ -34,32 +33,12 @@
         </div>
       </div>
       <div>
-        <el-button  @click="openFile" icon="el-icon-star-off"></el-button>
-        <el-button
-          class="ui button"
-          id="btsave"
-          data-content="Save the current post"
-          ><i class="save outline icon"></i
-        ></el-button>
-        <el-button class="ui button" id="bttextile" data-content="Preview"
-          ><i class="code icon"></i
-        ></el-button>
-        <el-button
-          class="ui button"
-          id="btbuildindex"
-          data-content="Create all index-00-99.page files"
-          >Create Index Pages</el-button
-        >
-        <el-button
-          class="ui button"
-          id="btrunwebgen"
-          data-content="Run webgen to update the full site"
-          >Start Webgen</el-button
-        >
-        <el-button
-          class="ui button"
-          id="btgotowebgenout"
-          data-content="Open webgen output in a new browser window"
+        <el-button @click="openFile" icon="el-icon-folder-opened"></el-button>
+        <el-button @click="saveFile" icon="el-icon-folder-checked"></el-button>
+        <el-button @click="previewFile" icon="el-icon-view"></el-button>
+        <el-button @click="createIndexPages">Create Index Pages</el-button>
+        <el-button @click="startWebGen">Start Webgen</el-button>
+        <el-button @click="navigateToWebGenOut"
           >Navigate to webgen out</el-button
         >
       </div>
