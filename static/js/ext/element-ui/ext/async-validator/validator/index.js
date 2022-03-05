@@ -1,83 +1,89 @@
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+export default {
+  ctor() {
 
-var _string = require('./string');
+    'use strict';
 
-var _string2 = _interopRequireDefault(_string);
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
 
-var _method = require('./method');
+    var _string = require('./string');
 
-var _method2 = _interopRequireDefault(_method);
+    var _string2 = _interopRequireDefault(_string);
 
-var _number = require('./number');
+    var _method = require('./method');
 
-var _number2 = _interopRequireDefault(_number);
+    var _method2 = _interopRequireDefault(_method);
 
-var _boolean = require('./boolean');
+    var _number = require('./number');
 
-var _boolean2 = _interopRequireDefault(_boolean);
+    var _number2 = _interopRequireDefault(_number);
 
-var _regexp = require('./regexp');
+    var _boolean = require('./boolean');
 
-var _regexp2 = _interopRequireDefault(_regexp);
+    var _boolean2 = _interopRequireDefault(_boolean);
 
-var _integer = require('./integer');
+    var _regexp = require('./regexp');
 
-var _integer2 = _interopRequireDefault(_integer);
+    var _regexp2 = _interopRequireDefault(_regexp);
 
-var _float = require('./float');
+    var _integer = require('./integer');
 
-var _float2 = _interopRequireDefault(_float);
+    var _integer2 = _interopRequireDefault(_integer);
 
-var _array = require('./array');
+    var _float = require('./float');
 
-var _array2 = _interopRequireDefault(_array);
+    var _float2 = _interopRequireDefault(_float);
 
-var _object = require('./object');
+    var _array = require('./array');
 
-var _object2 = _interopRequireDefault(_object);
+    var _array2 = _interopRequireDefault(_array);
 
-var _enum = require('./enum');
+    var _object = require('./object');
 
-var _enum2 = _interopRequireDefault(_enum);
+    var _object2 = _interopRequireDefault(_object);
 
-var _pattern = require('./pattern');
+    var _enum = require('./enum');
 
-var _pattern2 = _interopRequireDefault(_pattern);
+    var _enum2 = _interopRequireDefault(_enum);
 
-var _date = require('./date');
+    var _pattern = require('./pattern');
 
-var _date2 = _interopRequireDefault(_date);
+    var _pattern2 = _interopRequireDefault(_pattern);
 
-var _required = require('./required');
+    var _date = require('./date');
 
-var _required2 = _interopRequireDefault(_required);
+    var _date2 = _interopRequireDefault(_date);
 
-var _type = require('./type');
+    var _required = require('./required');
 
-var _type2 = _interopRequireDefault(_type);
+    var _required2 = _interopRequireDefault(_required);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+    var _type = require('./type');
 
-exports['default'] = {
-  string: _string2['default'],
-  method: _method2['default'],
-  number: _number2['default'],
-  boolean: _boolean2['default'],
-  regexp: _regexp2['default'],
-  integer: _integer2['default'],
-  float: _float2['default'],
-  array: _array2['default'],
-  object: _object2['default'],
-  'enum': _enum2['default'],
-  pattern: _pattern2['default'],
-  date: _date2['default'],
-  url: _type2['default'],
-  hex: _type2['default'],
-  email: _type2['default'],
-  required: _required2['default']
-};
-module.exports = exports['default'];
+    var _type2 = _interopRequireDefault(_type);
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+    exports['default'] = {
+      string: _string2['default'],
+      method: _method2['default'],
+      number: _number2['default'],
+      boolean: _boolean2['default'],
+      regexp: _regexp2['default'],
+      integer: _integer2['default'],
+      float: _float2['default'],
+      array: _array2['default'],
+      object: _object2['default'],
+      'enum': _enum2['default'],
+      pattern: _pattern2['default'],
+      date: _date2['default'],
+      url: _type2['default'],
+      hex: _type2['default'],
+      email: _type2['default'],
+      required: _required2['default']
+    };
+    module.exports = exports['default'];
+  }
+}
