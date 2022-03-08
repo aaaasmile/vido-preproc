@@ -3,33 +3,16 @@
     <div class="ui attached message">
       <div class="header">Editing Post</div>
     </div>
-    <el-form ref="form"  label-width="120px">
-      <div class="field">
-        <el-form-item label="Title Post">
-          <el-input v-model="TitlePost"></el-input>
-        </el-form-item>
-        <!-- <label>File name</label>
-        <input
-          placeholder="TitlePost"
-          disabled="true"
-          name="titlepost"
-          type="text"
-          size="35"
-          :value="TitlePost"
-        /> -->
-      </div>
+    <el-form ref="form" label-width="80px">
+      <el-form-item label="Title Post">
+        <el-input v-model="TitlePost"></el-input>
+      </el-form-item>
+
+      <el-form-item label="Post">
+        <el-input type="textarea" v-model="ContentPost"></el-input>
+      </el-form-item>
+
       <div class="two fields">
-        <div class="field">
-          <label>Post</label>
-          <textarea
-            id="post"
-            rows="25"
-            cols="110"
-            name="contentpost"
-            placeholder="ContentPost"
-            :value="ContentPost"
-          ></textarea>
-        </div>
         <div class="field">
           <label>Preview Area</label>
           <div id="preview"></div>
