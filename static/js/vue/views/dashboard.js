@@ -13,6 +13,14 @@ export default {
   mounted() {
   },
   computed: {
+    TitlePost: {
+      get() {
+        return this.$store.state.post.title_post
+      },
+      set(newVal) {
+        this.$store.commit('setPostTitle', newVal)
+      }
+    },
     ...Vuex.mapState({
       LastMsgText: state => {
         return state.gen.lastMsgText
@@ -20,9 +28,7 @@ export default {
       ContentPost: state => {
 
       },
-      TitlePost: state => {
-
-      }
+      
     })
   },
   methods: {
@@ -173,5 +179,6 @@ export default {
         (comando ./sync_site_invido.sh)
       </p>
     </div>
-  </div>`
+  </div>
+`
 }
