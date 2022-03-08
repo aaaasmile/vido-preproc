@@ -6,11 +6,13 @@ import Button from '../ext/element-ui/pck/button/index.js'
 import Tooltip from '../ext/element-ui/pck/tooltip/index.js'
 import Form from '../ext/element-ui/pck/form/index.js'
 import FormItem from '../ext/element-ui/pck/form-item/index.js';
+import Input from '../ext/element-ui/pck/input/index.js';
 
 const components = [
   Button,
   Form,
   FormItem,
+  Input,
   Tooltip
 ]
 

@@ -16,6 +16,7 @@ type PageCtx struct {
 	RootUrl        string
 	VuetifyLibName string
 	VueLibName     string
+	Env            string
 }
 
 func handleIndexGet(w http.ResponseWriter, req *http.Request) error {
@@ -38,6 +39,7 @@ func handleGetApp(w http.ResponseWriter, req *http.Request) error {
 		Buildnr:        idl.Buildnr,
 		VuetifyLibName: conf.Current.VuetifyLibName,
 		VueLibName:     conf.Current.VueLibName,
+		Env:            "Dev",
 	}
 	templName := "templates/vue/index.html"
 

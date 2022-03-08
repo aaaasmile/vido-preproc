@@ -114,3 +114,13 @@ Sorgenti che vanno splittati in vue e js.
 I singoli componenti li ho poi messi in main.js. Molto lavoro manuale, ma almeno c'è il vantaggio che metto solo i componenti che 
 mi servono.
 Per le immagini delle icone vedi: https://element.eleme.io/#/en-US/component/icon#icon
+Per esempio voglio il controllo el-input.
+1) Vado nella dir reference\hello-world\node_modules\element-ui\packages e prendo la dir input
+e la copio nella dir vido-preproc\vido-preproc\static\js\ext\element-ui\pck
+2) cambio il file index.js in element-ui\pck\input
+3) dal file input.vue creo manualmente nella stessa directory il file input.js per "Vue Template Js"
+In input.js trasporto la sezione Script e creo la sezione template con la string vuota. Poi in input.vue applico "Vue Template Js"
+4) I vari import vanno adattati per il browser (path e .js alla fine)
+5) Input va messo nella lista dei controlli in main.js
+Nota che la variabile process.env.NODE_ENV diventa window.env.NODE_ENV 
+

@@ -32,6 +32,7 @@
 </body>
 <script>
   window.myapp = { buildnr: "{{.Buildnr}}" }
+  window.env = { NODE_ENV: "{{.Env}}"}
 </script>
 <script type="module">
   import { app } from './static/js/vue/main.js?{{.Buildnr}}'

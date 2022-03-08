@@ -6,7 +6,7 @@
     <el-form ref="form"  label-width="120px">
       <div class="field">
         <el-form-item label="Title Post">
-          <!-- <el-input v-model="TitlePost"></el-input> -->
+          <el-input v-model="TitlePost"></el-input>
         </el-form-item>
         <!-- <label>File name</label>
         <input

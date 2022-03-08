@@ -31,7 +31,7 @@ export default {
     var warning = exports.warning = function warning() { };
 
     // don't print warning message when in production env or node runtime
-    if (process.env.NODE_ENV !== 'production' && typeof window !== 'undefined' && typeof document !== 'undefined') {
+    if (window.env.NODE_ENV !== 'production' && typeof window !== 'undefined' && typeof document !== 'undefined') {
       exports.warning = warning = function warning(type, errors) {
         if (typeof console !== 'undefined' && console.warn) {
           if (errors.every(function (e) {
