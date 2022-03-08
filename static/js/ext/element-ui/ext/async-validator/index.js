@@ -1,5 +1,5 @@
 import Util from './util.js'
-import Validator from './validator.js'
+//import Validator from './validator.js'
 import Messages from './messages.js' 
 
 export default {
@@ -20,7 +20,8 @@ export default {
 
     var _util = Util//require('./util');
 
-    var _validator = Validator//require('./validator/');
+    //var _validator = Validator//require('./validator/');
+    var _validator = {}
 
     var _validator2 = _interopRequireDefault(_validator);
 
@@ -282,7 +283,9 @@ export default {
     };
 
     Schema.messages = _messages2.messages;
-  }
+
+    return Schema
+  }// end c_tor()
 }
 
 // exports['default'] = Schema;
