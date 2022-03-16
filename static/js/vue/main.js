@@ -7,8 +7,10 @@ import Tooltip from '../ext/element-ui/pck/tooltip/index.js'
 import Form from '../ext/element-ui/pck/form/index.js'
 import FormItem from '../ext/element-ui/pck/form-item/index.js';
 import Input from '../ext/element-ui/pck/input/index.js';
+import Container from '../ext/element-ui/pck/container/index.js';
 
 const components = [
+  Container,
   Button,
   Form,
   FormItem,

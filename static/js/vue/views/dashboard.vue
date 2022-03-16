@@ -1,5 +1,5 @@
 <template>
-  <div class="ui container">
+  <el-container>
     <div class="ui attached message">
       <div class="header">Editing Post</div>
     </div>
@@ -108,5 +108,5 @@
         (comando ./sync_site_invido.sh)
       </p>
     </div>
-  </div>
+  </el-container>
 </template>
