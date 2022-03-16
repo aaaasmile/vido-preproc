@@ -9,10 +9,12 @@ import FormItem from '../ext/element-ui/pck/form-item/index.js';
 import Input from '../ext/element-ui/pck/input/index.js';
 import Container from '../ext/element-ui/pck/container/index.js';
 import Row from '../ext/element-ui/pck/row/index.js';
+import Col from '../ext/element-ui/pck/col/index.js';
 
 const components = [
   Container,
   Row,
+  Col,
   Button,
   Form,
   FormItem,

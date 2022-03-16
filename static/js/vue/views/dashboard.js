@@ -60,7 +60,7 @@ export default {
   template: `
   <el-container>
     <el-row>
-      <div class="header">Editing Post</div>
+      <el-col>Editing Post</el-col>
     </el-row>
     <el-form ref="form" label-width="80px">
       <el-form-item label="Title Post">
