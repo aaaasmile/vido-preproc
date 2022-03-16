@@ -10,11 +10,13 @@ import Input from '../ext/element-ui/pck/input/index.js';
 import Container from '../ext/element-ui/pck/container/index.js';
 import Row from '../ext/element-ui/pck/row/index.js';
 import Col from '../ext/element-ui/pck/col/index.js';
+import Footer from '../ext/element-ui/pck/footer/index.js';
 
 const components = [
   Container,
   Row,
   Col,
+  Footer,
   Button,
   Form,
   FormItem,
@@ -47,28 +49,25 @@ export const app = new Vue({
 
   },
   template: `
-  <div>
+  <el-container>
     <Toast></Toast>
     <router-view></router-view>
-    <div class="ui vertical footer segment">
-      <div class="ui container">
-        <div class="ui stackable divided equal ten stackable grid">
-          <div class="five wide column">
-            <h4 class="ui header">Version</h4>
-            <p>Software build {{ Buildnr }}</p>
-          </div>
-          <div class="seven wide column">
-            <h4 class="ui header">Info</h4>
-            <p>
-              <i class="copyright icon"></i> {{ new Date().getFullYear() }} by
-              Invido.it
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-`
+    <el-footer>
+      <el-row>
+        <el-col>
+          <h4 class="ui header">Version</h4>
+          <span>Software build {{ Buildnr }}</span>
+        </el-col>
+        <el-col>
+          <h4 class="ui header">Info</h4>
+          <span>
+            <i class="copyright icon"></i> {{ new Date().getFullYear() }} by
+            Invido.it
+          </span>
+        </el-col>
+      </el-row>
+    </el-footer>
+  </el-container>`
 })
 
 console.log('Main is here!')
