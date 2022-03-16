@@ -1,8 +1,8 @@
 <template>
   <el-container>
-    <div class="ui attached message">
+    <el-row>
       <div class="header">Editing Post</div>
-    </div>
+    </el-row>
     <el-form ref="form" label-width="80px">
       <el-form-item label="Title Post">
         <el-input v-model="TitlePost"></el-input>
