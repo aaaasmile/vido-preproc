@@ -11,12 +11,14 @@ import Container from '../ext/element-ui/pck/container/index.js';
 import Row from '../ext/element-ui/pck/row/index.js';
 import Col from '../ext/element-ui/pck/col/index.js';
 import Footer from '../ext/element-ui/pck/footer/index.js';
+import Header from '../ext/element-ui/pck/header/index.js';
 
 const components = [
   Container,
   Row,
   Col,
   Footer,
+  Header,
   Button,
   Form,
   FormItem,
@@ -55,19 +57,20 @@ export const app = new Vue({
     <el-footer>
       <el-row>
         <el-col>
-          <h4 class="ui header">Version</h4>
-          <span>Software build {{ Buildnr }}</span>
+          <el-header>Version</el-header>
+          <el-row>Software build {{ Buildnr }}</el-row>
         </el-col>
         <el-col>
-          <h4 class="ui header">Info</h4>
-          <span>
+          <el-header>Info</el-header>
+          <el-row>
             <i class="copyright icon"></i> {{ new Date().getFullYear() }} by
             Invido.it
-          </span>
+          </el-row>
         </el-col>
       </el-row>
     </el-footer>
-  </el-container>`
+  </el-container>
+`
 })
 
 console.log('Main is here!')

@@ -5,15 +5,15 @@
     <el-footer>
       <el-row>
         <el-col>
-          <h4 class="ui header">Version</h4>
-          <span>Software build {{ Buildnr }}</span>
+          <el-header>Version</el-header>
+          <el-row>Software build {{ Buildnr }}</el-row>
         </el-col>
         <el-col>
-          <h4 class="ui header">Info</h4>
-          <span>
+          <el-header>Info</el-header>
+          <el-row>
             <i class="copyright icon"></i> {{ new Date().getFullYear() }} by
             Invido.it
-          </span>
+          </el-row>
         </el-col>
       </el-row>
     </el-footer>
