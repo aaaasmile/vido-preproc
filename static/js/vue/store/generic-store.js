@@ -2,10 +2,15 @@ export default {
   state: {
     errorText: '',
     msgText: '',
+    navbackend: '',
+    navbackend_system: '',
     lastmsgText: '',
-    datalog: [],
+    infodata: [],
+    reslog: [],
+    user_name: '',
+    company: '',
   },
-  mutations: {    
+  mutations: {
     errorText(state, msg) {
       state.errorText = msg
       state.lastmsgText = msg
@@ -21,10 +26,10 @@ export default {
     lastMsgText(state, msg) {
       state.lastmsgText = msg
     },
-    msginfolog(state, datalog) {
-      state.datalog = []
-      for (let ix = 0; ix < datalog.length; ix++) {
-        state.datalog.push({ key: ix, text: datalog[ix] })
+    msginfolog(state, infodata) {
+      state.infodata = []
+      for (let ix = 0; ix < infodata.length; ix++) {
+        state.infodata.push({ key: ix, text: infodata[ix] })
       }
     },
     clearErrorText(state) {
@@ -33,8 +38,19 @@ export default {
       }
     },
     clearMsgText(state) {
-      if (state.msgText !== '') {
-        state.msgText = ''
+      state.msgText = ''
+    },
+    clearAll(state) {
+      state.msgText = ''
+      state.errorText = ''
+      state.infodata = [],
+      state.reslog = [],
+      state.lastmsgText = ''
+    },
+    scriptResDatalog(state, datalog) {
+      state.reslog = []
+      for (let ix = 0; ix < datalog.length; ix++) {
+        state.reslog.push({ key: ix, text: datalog[ix] })
       }
     }
   }

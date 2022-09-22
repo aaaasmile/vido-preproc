@@ -1,21 +1,13 @@
 <template>
-  <el-container>
-    <Toast></Toast>
-    <router-view></router-view>
-    <el-footer>
-      <el-row>
-        <el-col>
-          <el-header>Version</el-header>
-          <el-row>Software build {{ Buildnr }}</el-row>
-        </el-col>
-        <el-col>
-          <el-header>Info</el-header>
-          <el-row>
-            <i class="copyright icon"></i> {{ new Date().getFullYear() }} by
-            Invido.it
-          </el-row>
-        </el-col>
-      </el-row>
-    </el-footer>
-  </el-container>
+  <v-app class="grey lighten-4">
+    <v-content class="mx-4 mb-4">
+      <router-view></router-view>
+    </v-content>
+    <v-footer absolute>
+      <v-col class="text-center caption" cols="12">
+        {{ new Date().getFullYear() }} —
+        <span>Buildnr: {{Buildnr}}</span>
+      </v-col>
+    </v-footer>
+  </v-app>
 </template>

@@ -1,12 +1,6 @@
 <template>
-  <div 
-    class="ui message transition" 
-    :class="{ hidden: isHidden }"
-  >
-    <i class="close icon" @click="closeToast"></i>
-    <div class="header">Message</div>
-    <p>
+  <v-snackbar v-model="snackbar" :color="colorsnack">
       {{ textMsg }}
-    </p>
-  </div>
+      <v-btn dark text @click="closeToast">Close</v-btn>
+    </v-snackbar>
 </template>

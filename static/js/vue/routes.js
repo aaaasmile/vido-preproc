@@ -1,4 +1,4 @@
-import Dashboard from './views/dashboard.js'
+import Dashboard from './views/dashboard.js?version=1'
 
 
 export default [

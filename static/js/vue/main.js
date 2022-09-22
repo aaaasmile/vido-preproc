@@ -1,39 +1,10 @@
-import store from './store/index.js'
-import routes from './routes.js'
-import Toast from './components/toast.js'
-//Element ui components
-import Button from '../ext/element-ui/pck/button/index.js'
-import Tooltip from '../ext/element-ui/pck/tooltip/index.js'
-import Form from '../ext/element-ui/pck/form/index.js'
-import FormItem from '../ext/element-ui/pck/form-item/index.js';
-import Input from '../ext/element-ui/pck/input/index.js';
-import Container from '../ext/element-ui/pck/container/index.js';
-import Row from '../ext/element-ui/pck/row/index.js';
-import Col from '../ext/element-ui/pck/col/index.js';
-import Footer from '../ext/element-ui/pck/footer/index.js';
-import Header from '../ext/element-ui/pck/header/index.js';
-
-const components = [
-  Container,
-  Row,
-  Col,
-  Footer,
-  Header,
-  Button,
-  Form,
-  FormItem,
-  Input,
-  Tooltip
-]
-
-components.forEach(component => {
-  Vue.component(component.name, component);
-});
+import store from './store/index.js?version=1'
+import routes from './routes.js?version=1'
 
 export const app = new Vue({
   el: '#app',
   router: new VueRouter({ routes }),
-  components: { Toast },
+  vuetify: new Vuetify(),
   store,
   data() {
     return {
@@ -42,6 +13,7 @@ export const app = new Vue({
   },
   computed: {
     ...Vuex.mapState({
+    
     })
   },
   created() {
@@ -51,25 +23,17 @@ export const app = new Vue({
 
   },
   template: `
-  <el-container>
-    <Toast></Toast>
-    <router-view></router-view>
-    <el-footer>
-      <el-row>
-        <el-col>
-          <el-header>Version</el-header>
-          <el-row>Software build {{ Buildnr }}</el-row>
-        </el-col>
-        <el-col>
-          <el-header>Info</el-header>
-          <el-row>
-            <i class="copyright icon"></i> {{ new Date().getFullYear() }} by
-            Invido.it
-          </el-row>
-        </el-col>
-      </el-row>
-    </el-footer>
-  </el-container>
+  <v-app class="grey lighten-4">
+    <v-content class="mx-4 mb-4">
+      <router-view></router-view>
+    </v-content>
+    <v-footer absolute>
+      <v-col class="text-center caption" cols="12">
+        {{ new Date().getFullYear() }} —
+        <span>Buildnr: {{Buildnr}}</span>
+      </v-col>
+    </v-footer>
+  </v-app>
 `
 })
 
