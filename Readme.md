@@ -123,4 +123,5 @@ In input.js trasporto la sezione Script e creo la sezione template con la string
 4) I vari import vanno adattati per il browser (path e .js alla fine)
 5) Input va messo nella lista dei controlli in main.js
 Nota che la variabile process.env.NODE_ENV diventa window.env.NODE_ENV 
+6) Per quanto riguarda Message e Notification esse sono funczioni che vanno messe in Vue.prototype.
 
